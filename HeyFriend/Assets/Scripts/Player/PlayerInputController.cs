@@ -3,7 +3,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : MonoBehaviour
+public class PlayerInputController : MonoBehaviourPun
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action OnJumpEvent;
