@@ -1,10 +1,9 @@
-using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveController : MonoBehaviourPun
+public class PlayerMoveController : MonoBehaviour
 {
     PlayerInputController playerInputController;
     Rigidbody2D rigidBody2D;
@@ -15,7 +14,7 @@ public class PlayerMoveController : MonoBehaviourPun
     private Vector2 MoveDirection;
     public float gravityscale;
     public float velocty_y;
-    [SerializeField] private float jumpPower;
+    public float jumpPower;
     [SerializeField] private float speed;
 
     // Start is called before the first frame update
@@ -32,21 +31,15 @@ public class PlayerMoveController : MonoBehaviourPun
     }
     void FixedUpdate(){
         MoveMent();
-        velocty_y = (float)Math.Round(rigidBody2D.velocity.y, 2);
     }
     private void JumpMoveMent()
     {
-        if (!photonView.IsMine) return;
-
-        if (Math.Round(rigidBody2D.velocity.y,2)==0){
-            Debug.Log("호출" + Vector2.up * jumpPower);
+        if(Math.Round(rigidBody2D.velocity.y,2)==0){
             rigidBody2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             animator.SetTrigger(jumpParamToHash);
         }
     }
     private void OnMove(Vector2 direction){
-        if (!photonView.IsMine) return;
-
         MoveDirection = direction* speed;
     }
     private void MoveMent()
@@ -56,5 +49,12 @@ public class PlayerMoveController : MonoBehaviourPun
 
         spriteRenderer.flipX = MoveDirection.x<= 0?true:false;
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
+    }
+
+    public void JumpAction(float jumpPower)
+    {
+        Debug.Log("점프액션");
+        rigidBody2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        animator.SetTrigger(jumpParamToHash);
     }
 }
