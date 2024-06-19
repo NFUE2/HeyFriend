@@ -7,7 +7,7 @@ using TMPro;
 using System.Linq.Expressions;
 
 
-public class NetworkManager : MonoBehaviourPunCallbacks
+public class NetworkManager : Singleton<NetworkManager>
 {
     public TextMeshProUGUI text;
     private void Awake()
