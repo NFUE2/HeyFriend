@@ -14,7 +14,7 @@ public class PlayerMoveController : MonoBehaviour
     private Vector2 MoveDirection;
     public float gravityscale;
     public float velocty_y;
-    [SerializeField] private float jumpPower;
+    public float jumpPower;
     [SerializeField] private float speed;
 
     // Start is called before the first frame update
@@ -31,12 +31,10 @@ public class PlayerMoveController : MonoBehaviour
     }
     void FixedUpdate(){
         MoveMent();
-        velocty_y = (float)Math.Round(rigidBody2D.velocity.y, 2);
     }
     private void JumpMoveMent()
     {
         if(Math.Round(rigidBody2D.velocity.y,2)==0){
-            Debug.Log("호출" + Vector2.up * jumpPower);
             rigidBody2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             animator.SetTrigger(jumpParamToHash);
         }
@@ -51,5 +49,12 @@ public class PlayerMoveController : MonoBehaviour
 
         spriteRenderer.flipX = MoveDirection.x<= 0?true:false;
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
+    }
+
+    public void JumpAction(float jumpPower)
+    {
+        Debug.Log("점프액션");
+        rigidBody2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        animator.SetTrigger(jumpParamToHash);
     }
 }
