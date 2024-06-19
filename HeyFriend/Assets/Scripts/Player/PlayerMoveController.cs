@@ -1,9 +1,10 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveController : MonoBehaviour
+public class PlayerMoveController : MonoBehaviourPun
 {
     PlayerInputController playerInputController;
     Rigidbody2D rigidBody2D;
@@ -35,13 +36,17 @@ public class PlayerMoveController : MonoBehaviour
     }
     private void JumpMoveMent()
     {
-        if(Math.Round(rigidBody2D.velocity.y,2)==0){
+        if (!photonView.IsMine) return;
+
+        if (Math.Round(rigidBody2D.velocity.y,2)==0){
             Debug.Log("호출" + Vector2.up * jumpPower);
             rigidBody2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             animator.SetTrigger(jumpParamToHash);
         }
     }
     private void OnMove(Vector2 direction){
+        if (!photonView.IsMine) return;
+
         MoveDirection = direction* speed;
     }
     private void MoveMent()
