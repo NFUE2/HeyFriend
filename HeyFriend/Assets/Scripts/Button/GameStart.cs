@@ -13,10 +13,7 @@ public class GameStart : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        yield return new WaitForSeconds(1.0f);
-        //SceneManager.LoadScene("MainScene"); //본문
-        SceneManager.LoadScene(1); //임시조치
-
-        StopCoroutine(LoadScene());
+        yield return new WaitForSecondsRealtime(0.5f);
+        SceneManager.LoadScene("MainScene");
     }
 }
