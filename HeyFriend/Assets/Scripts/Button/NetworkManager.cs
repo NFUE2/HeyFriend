@@ -57,15 +57,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     IEnumerator CheckChangeScene()
     {
+        PhotonNetwork.LoadLevel(1);
+
         int prevSceneNumber, curSceneNumber;
 
-        prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+        //prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
 
-        while (prevSceneNumber == curSceneNumber)
+        while (PhotonNetwork.NetworkClientState != ClientState.Joined)
         {
-            curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+            //curSceneNumber = SceneManager.GetActiveScene().buildIndex;
             yield return null;
         }
+        Debug.Log(1);
 
         PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
     }
