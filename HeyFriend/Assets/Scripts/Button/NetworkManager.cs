@@ -5,15 +5,22 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using System.Linq.Expressions;
+using Photon.Pun.UtilityScripts;
 
 
-public class NetworkManager : Singleton<NetworkManager>
+public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    public static NetworkManager Instance { get; private set; }
+
     public TextMeshProUGUI text;
+    public TextMeshProUGUI counttext;
+
     public GameObject connectPanel;
-    public override void Awake()
+
+    public void Awake()
     {
-        base.Awake();
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         //서버접속
         PhotonNetwork.ConnectUsingSettings();
@@ -27,6 +34,7 @@ public class NetworkManager : Singleton<NetworkManager>
 
     private void Update()
     {
+        //counttext.text = PhotonNetwork.LocalPlayer.get;
         text.text = PhotonNetwork.NetworkClientState.ToString();
     }
 
@@ -38,5 +46,24 @@ public class NetworkManager : Singleton<NetworkManager>
             yield return null;
 
         connectPanel.SetActive(false);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        StartCoroutine(CreatePlayer());
+    }
+
+    IEnumerator CreatePlayer()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        Debug.Log(1);
     }
 }
