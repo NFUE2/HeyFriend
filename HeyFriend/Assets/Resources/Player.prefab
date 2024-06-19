@@ -311,6 +311,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6e03efcb-d65a-42d3-b089-764a4be5db5e
     m_ActionName: Player/Escape[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ae5d95ba-324f-4c01-bbca-2e9c85c32928
+    m_ActionName: TestMove/MoveTest[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -37,4 +37,5 @@ public class MoveSquare : MonoBehaviour
             rigid.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
+    
 }
