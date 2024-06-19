@@ -57,4 +57,8 @@ public class PlayerMoveController : MonoBehaviour
         rigidBody2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         animator.SetTrigger(jumpParamToHash);
     }
+
+    public void AddParentVelocity(float velocity_X){
+        MoveDirection.x=velocity_X;
+    }
 }
