@@ -10,12 +10,13 @@ using System.Linq.Expressions;
 public class NetworkManager : Singleton<NetworkManager>
 {
     public TextMeshProUGUI text;
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+
         //서버접속
         PhotonNetwork.ConnectUsingSettings();
     }
-
     public void OnGameStart()
     {
         PhotonNetwork.JoinRandomOrCreateRoom();
