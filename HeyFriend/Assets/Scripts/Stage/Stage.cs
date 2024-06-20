@@ -14,18 +14,33 @@ public class Stage : MonoBehaviour
     public TMP_Text UIStage;
     public TMP_Text UITotalPoint;
     public TMP_Text UIStagePoint;
-    public GameObject RestartBtn;
     public GameObject Finish;
 
+    private List<string> stageNames = new List<string>
+    { "Stage 1", "Stage 2", "Stage 3", "Stage 4", "Stage 5", "Stage 6", "Stage 7", "Stage 8", "Stage 9", "Stage 10"};
+    private static Stage instance;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void NextStage()
     {
-        if (stageIndex == 0)
-        stageIndex++;
         totalPoint += stagePoint;
         stagePoint = 0;
-
-        SceneManager.LoadScene("Stage 2");
-        UIStage.text= "STAGE " + (stageIndex + 1);
+        if (stageIndex < stageNames.Count - 1)
+        {
+            stageIndex++;
+            SceneManager.LoadScene(stageNames[stageIndex]);
+        }
         Finish.SetActive(false);
     }
 
