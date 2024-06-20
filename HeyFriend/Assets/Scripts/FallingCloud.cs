@@ -22,6 +22,7 @@ public class FallingCloud : MonoBehaviour
             StartCoroutine(Falling());
         }
     }
+    [PunRPC]
     public void FallingCoroutine(){
         StartCoroutine(Falling());
     }

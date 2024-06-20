@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other) {
+    private PhotonView pv;
 
+    private void Awake(){
+        pv = GetComponent<PhotonView>();
     }
-    GameObject obj;
-    void Start()
-    {
-        obj = transform.GetChild(0).gameObject;
-        Debug.Log(obj);    
+    public void OnButton(){
+        pv.RPC("LoadLevel",RpcTarget.AllBuffered);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    [PunRPC]
+    public void LoadLevel(){
+        Debug.Log("불러왔음");
+        PhotonNetwork.LoadLevel("Stage 2");
     }
 }
