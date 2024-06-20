@@ -17,6 +17,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     //참가자라면 모두 사용

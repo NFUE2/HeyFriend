@@ -13,13 +13,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public static NetworkManager Instance { get; private set; }
 
     public TextMeshProUGUI text;
-    public TextMeshProUGUI counttext;
+    //public TextMeshProUGUI counttext;
 
     public GameObject connectPanel;
 
-    string isMaster;
-    GameObject obj;
-    Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
+    //string isMaster;
+    //GameObject obj;
+
     public void Awake()
     {
         Instance = this;
@@ -60,7 +60,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(1);
 
         //int prevSceneNumber, curSceneNumber;
-
         //prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
 
         while (PhotonNetwork.NetworkClientState != ClientState.Joined)
@@ -68,9 +67,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             //curSceneNumber = SceneManager.GetActiveScene().buildIndex;
             yield return null;
         }
-        isMaster = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
-        obj = PhotonNetwork.Instantiate(isMaster, new Vector3(0,0,0), Quaternion.identity);
-        obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber-1];
+
+        //GameObject obj = PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
+        //isMaster = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
     }
 
 
