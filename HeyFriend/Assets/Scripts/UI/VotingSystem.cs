@@ -15,18 +15,19 @@ public class VotingSystem : MonoBehaviourPunCallbacks
     private int totalPlayer = 4; // 최대 인원
     private int requiredVote = 3; // 과반 인원
 
-    public GameObject pauseMenu; // 일시정지 메뉴
+    public GameObject pauseMenu; // 일시정지 이미지
     public GameObject pausevotingPanel; // 일시정지 투표 패널
     public GameObject quitVotingPanel; // 게임종료 투표 패널
     public float pauseDuration; // 일시정지되는 시간
 
     private bool isPaused = false; // 일시정지 bool값
-    private bool isVoting = false; // 투표진행 bool값
+    public bool isVoting = false; // 투표진행 bool값
 
     private HashSet<int> votedPlayers = new HashSet<int>(); // 투표한 플레이어 목록
 
     private enum VoteType { None, Pause, Quit } // 투표 타입값
     private VoteType currentVoteType = VoteType.None; // 현재 진행 중인 투표 종류
+    
 
     private void ResetVote() // 투표 리셋 함수
     {
@@ -39,6 +40,7 @@ public class VotingSystem : MonoBehaviourPunCallbacks
         votedPlayers.Clear(); // 투표인원 초기화
     }
 
+    
     public void VotePause() // 일시정지 찬성투표
     {
         if (isPaused || isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
@@ -129,12 +131,14 @@ public class VotingSystem : MonoBehaviourPunCallbacks
         }
     }
 
+    //--------------------------------------------------------투표가 과반수보다 높으면 일시정지를 한다.
     private IEnumerator PauseGame() // 코루틴 일시정지게임 로직
     {
-        isVoting = true; // 투표진행 켜라
+        
+        //isVoting = true; // 투표진행 켜라
         isPaused = true; // 일시정지 켜라
         Time.timeScale = 0f; // 시간을 멈춰라
-        pauseMenu.SetActive(true); // 일시정지 메뉴를 켜라
+        pauseMenu.SetActive(true); // 일시정지 이미지를 켜라
         CloseVotingPanels(); // 투표 패널을 닫아라
         yield return new WaitForSecondsRealtime(pauseDuration); // 게임 시간을 멈췄으니 실제 시간으로 일시정지 시간을 가게 해라
         Time.timeScale = 1f; // 끝났으면 다시 시간을 흐르게 해라
@@ -145,16 +149,18 @@ public class VotingSystem : MonoBehaviourPunCallbacks
 
     private void StartVoting(VoteType voteType) // 투표시작
     {
+        //---------------------------------------------투표 용지가 켜져있고 투표 버튼을 눌렀을 때 
+        Debug.Log("투표용지를 눌렀을 때 " + VoteType.None);
         if (currentVoteType == VoteType.None) // 현재 투표값이 아무것도 없다면
         {
             currentVoteType = voteType; // 현재 투표값은 voteType 변수값 적용
-            isVoting = true; // 투표진행 켜라
-            OpenVotingPanel(voteType); // voteType 변수값이 적용된 패널을 켜라
+            //isVoting = true; // 투표진행 켜라
+            //OpenVotingPanel(voteType); // voteType 변수값이 적용된 패널을 켜라
         }
     }
-
+    /*
     private void OpenVotingPanel(VoteType voteType) // 투표 패널 열기
-    {
+    {//---------------------------------------------------------------------------투표 버튼을 눌렀을때 호출이 
         switch (voteType) // voteType 별 케이스
         {
             case VoteType.Pause: // 일시정지 투표
@@ -165,7 +171,7 @@ public class VotingSystem : MonoBehaviourPunCallbacks
                 break;
         }
     }
-
+*/
     private void CloseVotingPanels() // 투표 패널 닫기
     {
         pausevotingPanel.SetActive(false); // 일시정지 투표 패널 꺼라

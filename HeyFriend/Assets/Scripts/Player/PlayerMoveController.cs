@@ -11,10 +11,13 @@ public class PlayerMoveController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     int jumpParamToHash = Animator.StringToHash("Jump");
     int speedParamToHash = Animator.StringToHash("Speed");
-    private Vector2 MoveDirection;
+    private Vector2 moveDirection;
+    private Vector2 parentMove;
     public float gravityscale;
     public float velocty_y;
     public float jumpPower;
+
+    private bool isMove=false;
     [SerializeField] private float speed;
 
     // Start is called before the first frame update
@@ -40,14 +43,19 @@ public class PlayerMoveController : MonoBehaviour
         }
     }
     private void OnMove(Vector2 direction){
-        MoveDirection = direction* speed;
+        moveDirection = direction* speed;
     }
     private void MoveMent()
     {
-        MoveDirection.y = rigidBody2D.velocity.y- gravityscale;
-        rigidBody2D.velocity = MoveDirection;
-
-        spriteRenderer.flipX = MoveDirection.x<= 0?true:false;
+        moveDirection.y = rigidBody2D.velocity.y- gravityscale;
+        rigidBody2D.velocity = moveDirection+ parentMove;
+        if(moveDirection.x<0){
+            spriteRenderer.flipX = true;
+        }
+        else if(moveDirection.x>0){
+            spriteRenderer.flipX = false;
+        }
+        
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
     }
 
@@ -59,6 +67,6 @@ public class PlayerMoveController : MonoBehaviour
     }
 
     public void AddParentVelocity(float velocity_X){
-        MoveDirection.x=velocity_X;
+        parentMove.x=velocity_X;
     }
 }

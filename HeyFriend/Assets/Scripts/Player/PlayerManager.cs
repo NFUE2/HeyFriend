@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody2D rigid;
     private PlayerMoveController playerMoveController;
+
     void Start()
     {
         rigid=GetComponent<Rigidbody2D>();
@@ -34,6 +35,7 @@ public class PlayerManager : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")){
             other.transform.SetParent(null);
+            other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(0);
         }
     }
 }
