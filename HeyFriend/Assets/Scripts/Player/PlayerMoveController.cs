@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class PlayerMoveController : MonoBehaviour
+public class PlayerMoveController : MonoBehaviourPunCallbacks
 {
     PlayerInputController playerInputController;
     Rigidbody2D rigidBody2D;
     Animator animator;
     SpriteRenderer spriteRenderer;
+    PhotonView PV;
     int jumpParamToHash = Animator.StringToHash("Jump");
     int speedParamToHash = Animator.StringToHash("Speed");
     private Vector2 moveDirection;
@@ -26,13 +28,15 @@ public class PlayerMoveController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        PV = GetComponent<PhotonView>();
     }
     void Start()
     {
         playerInputController.OnMoveEvent+= OnMove;
         playerInputController.OnJumpEvent+=JumpMoveMent;
     }
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
         MoveMent();
     }
     private void JumpMoveMent()
@@ -49,15 +53,16 @@ public class PlayerMoveController : MonoBehaviour
     {
         moveDirection.y = rigidBody2D.velocity.y- gravityscale;
         rigidBody2D.velocity = moveDirection+ parentMove;
-        if(moveDirection.x<0){
-            spriteRenderer.flipX = true;
-        }
-        else if(moveDirection.x>0){
-            spriteRenderer.flipX = false;
-        }
-        
+        if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
     }
+
+    [PunRPC]
+    void FilpXRPC(float x)
+    {
+        spriteRenderer.flipX = x <= 0; /*? true : false;*/
+    }
+
 
     public void JumpAction(float jumpPower)
     {

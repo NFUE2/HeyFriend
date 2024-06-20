@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class GameStart : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameStart : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        SceneManager.LoadScene(4);
+        //SceneManager.LoadScene(4);
+        PhotonNetwork.LoadLevel(1);
     }
 }

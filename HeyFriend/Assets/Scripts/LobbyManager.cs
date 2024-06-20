@@ -9,17 +9,15 @@ using UnityEngine.SceneManagement;
 
 
 
-public class GameManager : MonoBehaviourPunCallbacks
+public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI playerCountText;
     public GameObject startBtn;
 
-    public static GameManager instance;
-
     private void Awake()
     {
-        instance = this;
         PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     //참가자라면 모두 사용
@@ -57,22 +55,5 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsVisible = false;
 
         PhotonNetwork.LoadLevel(2);
-        //PhotonNetwork.LoadLevel(curLevel + 1);
-        //StartCoroutine(CheckChangeScene());
     }
-
-    //IEnumerator CheckChangeScene()
-    //{
-        //int prevSceneNumber, curSceneNumber;
-
-        //prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
-
-        //while (prevSceneNumber == curSceneNumber)
-        //{
-        //    curSceneNumber = SceneManager.GetActiveScene().buildIndex;
-        //    yield return null;
-        //}
-
-        //GameObject go = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
-    //}
 }

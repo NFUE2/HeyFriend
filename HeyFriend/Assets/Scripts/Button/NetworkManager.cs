@@ -13,9 +13,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public static NetworkManager Instance { get; private set; }
 
     public TextMeshProUGUI text;
-    public TextMeshProUGUI counttext;
+    //public TextMeshProUGUI counttext;
 
     public GameObject connectPanel;
+
+    //string isMaster;
+    //GameObject obj;
 
     public void Awake()
     {
@@ -29,7 +32,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public void OnGameStart()
     {
-        PhotonNetwork.JoinRandomOrCreateRoom();
+        RoomOptions options = new RoomOptions { MaxPlayers = 2 };
+
+        PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,"Test",options);
+
         StartCoroutine(CheckChangeScene());
     }
 
@@ -49,26 +55,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         connectPanel.SetActive(false);
     }
 
-    public override void OnJoinedRoom()
-    {
-        //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
-        //StartCoroutine(CreatePlayer());
-    }
-
     IEnumerator CheckChangeScene()
     {
-        int prevSceneNumber, curSceneNumber;
+        PhotonNetwork.LoadLevel(1);
 
-        prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+        //int prevSceneNumber, curSceneNumber;
+        //prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
 
-        while (prevSceneNumber == curSceneNumber)
+        while (PhotonNetwork.NetworkClientState != ClientState.Joined)
         {
-            curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+            //curSceneNumber = SceneManager.GetActiveScene().buildIndex;
             yield return null;
         }
 
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        //GameObject obj = PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
+        //isMaster = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
     }
+
+
 
     //IEnumerator CreatePlayer()
     //{
