@@ -3,7 +3,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : MonoBehaviourPun
+public class PlayerInputController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action OnJumpEvent;
@@ -12,7 +12,7 @@ public class PlayerInputController : MonoBehaviourPun
         pv = GetComponent<PhotonView>();
     }
     public void Move(InputAction.CallbackContext context){
-        //if(!pv.IsMine) return;
+        if (!pv.IsMine) return;
         Vector2 direction = context.ReadValue<Vector2>().normalized;
         if (context.phase == InputActionPhase.Performed)
         {
@@ -25,7 +25,7 @@ public class PlayerInputController : MonoBehaviourPun
     }
 
     public void Jump(InputAction.CallbackContext context){
-        //if(!pv.IsMine) return;
+        if (!pv.IsMine) return;
         if (context.phase == InputActionPhase.Started)
             OnJumpEvent?.Invoke();
     }

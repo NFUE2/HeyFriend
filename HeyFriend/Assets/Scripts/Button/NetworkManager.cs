@@ -5,15 +5,22 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using System.Linq.Expressions;
+using Photon.Pun.UtilityScripts;
+using UnityEngine.SceneManagement;
 
-
-public class NetworkManager : Singleton<NetworkManager>
+public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    public static NetworkManager Instance { get; private set; }
+
     public TextMeshProUGUI text;
+    public TextMeshProUGUI counttext;
+
     public GameObject connectPanel;
-    public override void Awake()
+
+    public void Awake()
     {
-        base.Awake();
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         //서버접속
         PhotonNetwork.ConnectUsingSettings();
@@ -23,10 +30,12 @@ public class NetworkManager : Singleton<NetworkManager>
     public void OnGameStart()
     {
         PhotonNetwork.JoinRandomOrCreateRoom();
+        StartCoroutine(CheckChangeScene());
     }
 
     private void Update()
     {
+        //counttext.text = PhotonNetwork.LocalPlayer.get;
         text.text = PhotonNetwork.NetworkClientState.ToString();
     }
 
@@ -39,4 +48,38 @@ public class NetworkManager : Singleton<NetworkManager>
 
         connectPanel.SetActive(false);
     }
+
+    public override void OnJoinedRoom()
+    {
+        //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        //StartCoroutine(CreatePlayer());
+    }
+
+    IEnumerator CheckChangeScene()
+    {
+        int prevSceneNumber, curSceneNumber;
+
+        prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+
+        while (prevSceneNumber == curSceneNumber)
+        {
+            curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+            yield return null;
+        }
+
+        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+    }
+
+    //IEnumerator CreatePlayer()
+    //{
+    //    yield return new WaitForSeconds(2.0f);
+
+    //    PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+    //}
+
+    //public override void OnPlayerEnteredRoom(Player newPlayer)
+    //{
+    //    base.OnPlayerEnteredRoom(newPlayer);
+    //    Debug.Log(1);
+    //}
 }
