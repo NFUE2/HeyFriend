@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")){
             other.transform.SetParent(null);
+            other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(0);
         }
     }
 }
