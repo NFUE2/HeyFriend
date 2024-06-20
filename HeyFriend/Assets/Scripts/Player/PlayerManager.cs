@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody2D rigid;
     private PlayerMoveController playerMoveController;
+
     void Start()
     {
         rigid=GetComponent<Rigidbody2D>();
