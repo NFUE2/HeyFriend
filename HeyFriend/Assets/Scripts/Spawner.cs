@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
-
+    string isMaster;
     private void Start(){
-        PhotonNetwork.Instantiate("Player",transform.position, Quaternion.identity);
+        isMaster = PhotonNetwork.IsMasterClient?"MasterPlayer":"Player";
+        PhotonNetwork.Instantiate(isMaster, transform.position, Quaternion.identity);
     }
 }
