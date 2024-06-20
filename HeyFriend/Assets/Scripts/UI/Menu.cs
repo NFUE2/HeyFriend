@@ -35,4 +35,10 @@ public class Menu : MonoBehaviour
     {
         menu.SetActive(false);
     }
+
+    public void CloseSoundMenu()
+    {
+        soundMenu.SetActive(false);
+        menu.SetActive(true);
+    }
 }

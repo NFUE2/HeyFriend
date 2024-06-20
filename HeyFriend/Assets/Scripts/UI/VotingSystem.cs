@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class VotingSystem : MonoBehaviour
+public class VotingSystem : MonoBehaviourPunCallbacks
 {
     private int pauseVote = 0;
     private int unpauseVote = 0;
@@ -13,48 +16,89 @@ public class VotingSystem : MonoBehaviour
     private int requiredVote = 3;
 
     public GameObject pauseMenu;
+    public GameObject pausevotingPanel;
+    public GameObject quitVotingPanel;
     public float pauseDuration;
 
     private bool isPaused = false;
+    private bool isVoting = false;
 
-    // 투표 초기화
+    private HashSet<int> votedPlayers = new HashSet<int>();
+
+    private enum VoteType { None, Pause, Quit }
+    private VoteType currentVoteType = VoteType.None;
+
     private void ResetVote()
     {
         pauseVote = 0;
         unpauseVote = 0;
         quitVote = 0;
         continueVote = 0;
+        isVoting = false;
+        currentVoteType = VoteType.None;
+        votedPlayers.Clear();
     }
 
-    // 일시정지 투표 처리
     public void VotePause()
     {
-        if (isPaused) return;
-        pauseVote++;
-        CheckPauseVotes();
+        if (isPaused || isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
+        StartVoting(VoteType.Pause);
+        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber);
+        photonView.RPC("RPC_VotePause", RpcTarget.All);
     }
 
     public void VoteUnpause()
     {
-        if (isPaused) return;
+        if (isPaused || isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
+        StartVoting(VoteType.Pause);
+        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber);
+        photonView.RPC("RPC_VoteUnpause", RpcTarget.All);
+    }
+
+    public void VoteQuit()
+    {
+        if (isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
+        StartVoting(VoteType.Quit);
+        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber);
+        photonView.RPC("RPC_VoteQuit", RpcTarget.All);
+    }
+
+    public void VoteContinue()
+    {
+        if (isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
+        StartVoting(VoteType.Quit);
+        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber);
+        photonView.RPC("RPC_VoteContinue", RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void RPC_VotePause()
+    {
+        pauseVote++;
+        CheckPauseVotes();
+    }
+
+    [PunRPC]
+    private void RPC_VoteUnpause()
+    {
         unpauseVote++;
         CheckPauseVotes();
     }
 
-    // 게임 종료 투표 처리
-    public void VoteQuit()
+    [PunRPC]
+    private void RPC_VoteQuit()
     {
         quitVote++;
         CheckQuitVotes();
     }
 
-    public void VoteContinue()
+    [PunRPC]
+    private void RPC_VoteContinue()
     {
         continueVote++;
         CheckQuitVotes();
     }
 
-    // 일시정지 투표 결과 확인
     private void CheckPauseVotes()
     {
         if (pauseVote >= requiredVote)
@@ -64,10 +108,10 @@ public class VotingSystem : MonoBehaviour
         else if (unpauseVote >= requiredVote)
         {
             ResetVote();
+            CloseVotingPanels();
         }
     }
 
-    // 게임 종료 투표 결과 확인
     private void CheckQuitVotes()
     {
         if (quitVote >= requiredVote)
@@ -77,12 +121,13 @@ public class VotingSystem : MonoBehaviour
         else if (continueVote >= requiredVote)
         {
             ResetVote();
+            CloseVotingPanels();
         }
     }
 
-    // 일시정지 처리
     private IEnumerator PauseGame()
     {
+        isVoting = true;
         isPaused = true;
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
@@ -91,5 +136,35 @@ public class VotingSystem : MonoBehaviour
         pauseMenu.SetActive(false);
         ResetVote();
         isPaused = false;
+        CloseVotingPanels();
+    }
+
+    private void StartVoting(VoteType voteType)
+    {
+        if (currentVoteType == VoteType.None)
+        {
+            currentVoteType = voteType;
+            isVoting = true;
+            OpenVotingPanel(voteType);
+        }
+    }
+
+    private void OpenVotingPanel(VoteType voteType)
+    {
+        switch (voteType)
+        {
+            case VoteType.Pause:
+                pausevotingPanel.SetActive(true);
+                break;
+            case VoteType.Quit:
+                quitVotingPanel.SetActive(true);
+                break;
+        }
+    }
+
+    private void CloseVotingPanels()
+    {
+        pausevotingPanel.SetActive(false);
+        quitVotingPanel.SetActive(false);
     }
 }
