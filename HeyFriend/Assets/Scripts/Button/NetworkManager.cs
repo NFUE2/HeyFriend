@@ -29,7 +29,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public void OnGameStart()
     {
-        PhotonNetwork.JoinRandomOrCreateRoom();
+        RoomOptions options = new RoomOptions { MaxPlayers = 2 };
+
+        PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,"Test",options);
+
         StartCoroutine(CheckChangeScene());
     }
 
@@ -49,17 +52,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         connectPanel.SetActive(false);
     }
 
-    public override void OnJoinedRoom()
-    {
-        //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
-        //StartCoroutine(CreatePlayer());
-    }
-
     IEnumerator CheckChangeScene()
     {
         PhotonNetwork.LoadLevel(1);
 
-        int prevSceneNumber, curSceneNumber;
+        //int prevSceneNumber, curSceneNumber;
 
         //prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
 
@@ -68,10 +65,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             //curSceneNumber = SceneManager.GetActiveScene().buildIndex;
             yield return null;
         }
-        Debug.Log(1);
 
         PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
     }
+
+
 
     //IEnumerator CreatePlayer()
     //{
