@@ -58,7 +58,7 @@ namespace Photon.Pun
         {
             var tr = transform;
 
-            if (!this.photonView.IsMine)
+            if (!this.pv.IsMine)
             {
                 if (m_UseLocal)
 
