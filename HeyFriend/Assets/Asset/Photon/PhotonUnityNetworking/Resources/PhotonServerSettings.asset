@@ -39,9 +39,10 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
-  - FilpX
-  - FilpXRPC
-  - JumpAction
+  - RPC_VoteContinue
+  - RPC_VotePause
+  - RPC_VoteQuit
+  - RPC_VoteUnpause
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

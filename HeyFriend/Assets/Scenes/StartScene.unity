@@ -2890,7 +2890,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC88C\uC6B0\uC774\uB3D9 : A / D\n\uC810\uD504 : W"
+  m_text: "\uC88C\uC6B0\uC774\uB3D9 : A / D\n\uC810\uD504 : Space Bar"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e27a688ef0b21bc488be3a3d1f4e3748, type: 2}
   m_sharedMaterial: {fileID: -2890806833718855764, guid: e27a688ef0b21bc488be3a3d1f4e3748, type: 2}

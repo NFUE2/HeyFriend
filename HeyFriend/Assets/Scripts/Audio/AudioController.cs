@@ -17,7 +17,7 @@ public class AudioController : MonoBehaviour
         audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
     }
 
-    public void SetEffectVolume(float volume)
+    public void SetSFXVolume(float volume)
     {
         volume = Mathf.Clamp(volume, 0.0001f, 1f);
         audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
