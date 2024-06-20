@@ -29,7 +29,7 @@ namespace Photon.Pun
 
             base.OnInspectorGUI();
 
-            if (mbTarget.photonView == null)
+            if (mbTarget.pv == null)
             {
                 EditorGUILayout.HelpBox("Unable to find a PhotonView on this GameObject or on any parent GameObject.", MessageType.Warning);
             }
