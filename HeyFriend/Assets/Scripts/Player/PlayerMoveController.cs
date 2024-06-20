@@ -53,7 +53,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     {
         moveDirection.y = rigidBody2D.velocity.y- gravityscale;
         rigidBody2D.velocity = moveDirection+ parentMove;
-        if (MoveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, MoveDirection.x);
+        if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
     }
 

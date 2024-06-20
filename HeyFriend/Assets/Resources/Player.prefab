@@ -2112,7 +2112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &184637637088508239
 Transform:
   m_ObjectHideFlags: 0
@@ -2524,6 +2524,7 @@ MonoBehaviour:
   pausevotingPanel: {fileID: 4715496879794680948}
   quitVotingPanel: {fileID: 6609130059845142483}
   pauseDuration: 10
+  isPaused: 0
   OnVotingPanel: 0
 --- !u!114 &5142342259895803987
 MonoBehaviour:
@@ -5381,7 +5382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6843336955895162208
 RectTransform:
   m_ObjectHideFlags: 0
