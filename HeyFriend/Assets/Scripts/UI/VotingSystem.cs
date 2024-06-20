@@ -7,28 +7,28 @@ using Photon.Realtime;
 
 public class VotingSystem : MonoBehaviourPunCallbacks
 {
-    private int pauseVote = 0;
-    private int unpauseVote = 0;
-    private int quitVote = 0;
-    private int continueVote = 0;
+    private int pauseVote = 0; // 일시정지 찬성투표값
+    private int unpauseVote = 0; // 일시정지 반대투표값
+    private int quitVote = 0; // 게임종료 찬성투표값
+    private int continueVote = 0; // 게임종료 반대투표값
 
-    private int totalPlayer = 4;
-    private int requiredVote = 3;
+    private int totalPlayer = 4; // 최대 인원
+    private int requiredVote = 3; // 과반 인원
 
-    public GameObject pauseMenu;
-    public GameObject pausevotingPanel;
-    public GameObject quitVotingPanel;
-    public float pauseDuration;
+    public GameObject pauseMenu; // 일시정지 메뉴
+    public GameObject pausevotingPanel; // 일시정지 투표 패널
+    public GameObject quitVotingPanel; // 게임종료 투표 패널
+    public float pauseDuration; // 일시정지되는 시간
 
-    private bool isPaused = false;
-    private bool isVoting = false;
+    private bool isPaused = false; // 일시정지 bool값
+    private bool isVoting = false; // 투표진행 bool값
 
-    private HashSet<int> votedPlayers = new HashSet<int>();
+    private HashSet<int> votedPlayers = new HashSet<int>(); // 투표한 플레이어 목록
 
-    private enum VoteType { None, Pause, Quit }
-    private VoteType currentVoteType = VoteType.None;
+    private enum VoteType { None, Pause, Quit } // 투표 타입값
+    private VoteType currentVoteType = VoteType.None; // 현재 진행 중인 투표 종류
 
-    private void ResetVote()
+    private void ResetVote() // 투표 리셋 함수
     {
         pauseVote = 0;
         unpauseVote = 0;
@@ -36,135 +36,139 @@ public class VotingSystem : MonoBehaviourPunCallbacks
         continueVote = 0;
         isVoting = false;
         currentVoteType = VoteType.None;
-        votedPlayers.Clear();
+        votedPlayers.Clear(); // 투표인원 초기화
     }
 
-    public void VotePause()
+    public void VotePause() // 일시정지 찬성투표
     {
         if (isPaused || isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
-        StartVoting(VoteType.Pause);
-        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber);
-        photonView.RPC("RPC_VotePause", RpcTarget.All);
+        // 투표가 진행 중이거나 일시정지 상태거나 서버에 포함된 투표 인원이면 리턴해라
+        StartVoting(VoteType.Pause); // 투표를 시작해라 (투표종류 일시정지)
+        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber); // 서버에서 투표 인원을 더해라
+        photonView.RPC("RPC_VotePause", RpcTarget.All); // RPC_VotePause 를 RPC에 포함된 모두에게 발생시켜라
     }
 
-    public void VoteUnpause()
+    public void VoteUnpause() // 일시정지 반대투표
     {
         if (isPaused || isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
-        StartVoting(VoteType.Pause);
-        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber);
-        photonView.RPC("RPC_VoteUnpause", RpcTarget.All);
+        // 투표가 진행 중이거나 일시정지 상태거나 서버에 포함된 투표 인원이면 리턴해라
+        StartVoting(VoteType.Pause); // 투표를 시작해라 (투표종류 일시정지)
+        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber); // 서버에서 투표 인원을 더해라
+        photonView.RPC("RPC_VoteUnpause", RpcTarget.All); // RPC_VoteUnpause 를 RPC에 포함된 모두에게 발생시켜라
     }
 
-    public void VoteQuit()
+    public void VoteQuit() // 게임종료 찬성투표
     {
         if (isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
-        StartVoting(VoteType.Quit);
-        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber);
-        photonView.RPC("RPC_VoteQuit", RpcTarget.All);
+        // 투표가 진행 중이거나 서버에 포함된 투표 인원이면 리턴해라
+        StartVoting(VoteType.Quit); // 투표를 시작해라 (투표종류 게임종료)
+        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber); // 서버에서 투표 인원을 더해라
+        photonView.RPC("RPC_VoteQuit", RpcTarget.All); // RPC_VoteQuit 를 RPC에 포함된 모두에게 발생시켜라
     }
 
     public void VoteContinue()
     {
         if (isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
-        StartVoting(VoteType.Quit);
-        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber);
-        photonView.RPC("RPC_VoteContinue", RpcTarget.All);
+        // 투표가 진행 중이거나 서버에 포함된 투표 인원이면 리턴해라
+        StartVoting(VoteType.Quit); // 투표를 시작해라 (투표종류 게임종료)
+        votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber); // 서버에서 투표 인원을 더해라
+        photonView.RPC("RPC_VoteContinue", RpcTarget.All); // RPC_VoteContinue 를 RPC에 포함된 모두에게 발생시켜라
     }
 
     [PunRPC]
-    private void RPC_VotePause()
+    private void RPC_VotePause() // RPC 일시정지 찬성투표
     {
-        pauseVote++;
-        CheckPauseVotes();
+        pauseVote++; // 일시정지 찬성 투표수 더해라
+        CheckPauseVotes(); // 해당 함수 적용
     }
 
     [PunRPC]
-    private void RPC_VoteUnpause()
+    private void RPC_VoteUnpause() // RPC 일시정지 반대투표
     {
-        unpauseVote++;
-        CheckPauseVotes();
+        unpauseVote++; // 일시정지 반대 투표수 더해라
+        CheckPauseVotes(); // 해당 함수 적용
     }
 
     [PunRPC]
-    private void RPC_VoteQuit()
+    private void RPC_VoteQuit() // RPC 게임종료 찬성투표
     {
-        quitVote++;
-        CheckQuitVotes();
+        quitVote++; // 게임종료 찬성 투표수 더해라
+        CheckQuitVotes(); // 해당 함수 적용
     }
 
     [PunRPC]
-    private void RPC_VoteContinue()
+    private void RPC_VoteContinue() // RPC 게임종료 반대투표
     {
-        continueVote++;
-        CheckQuitVotes();
+        continueVote++; // 게임종료 반대 투표수 더해라
+        CheckQuitVotes(); // 해당 함수 적용
     }
 
-    private void CheckPauseVotes()
+    private void CheckPauseVotes() // 일시정지 투표 확인
     {
-        if (pauseVote >= requiredVote)
+        if (pauseVote >= requiredVote) // 일시정지 찬성투표가 과반수보다 많거나 같으면
         {
-            StartCoroutine(PauseGame());
+            StartCoroutine(PauseGame()); // 게임 일시정지 코루틴을 시작해라
         }
-        else if (unpauseVote >= requiredVote)
+        else if (unpauseVote >= requiredVote) // 일시정지 반대투표가 과반수보다 많거나 같으면
         {
-            ResetVote();
-            CloseVotingPanels();
-        }
-    }
-
-    private void CheckQuitVotes()
-    {
-        if (quitVote >= requiredVote)
-        {
-            SceneManager.LoadScene("StartScene");
-        }
-        else if (continueVote >= requiredVote)
-        {
-            ResetVote();
-            CloseVotingPanels();
+            ResetVote(); // 투표를 리셋해라
+            CloseVotingPanels(); // 투표 패널을 닫아라
         }
     }
 
-    private IEnumerator PauseGame()
+    private void CheckQuitVotes() // 게임종료 투표 확인
     {
-        isVoting = true;
-        isPaused = true;
-        Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
-        yield return new WaitForSecondsRealtime(pauseDuration);
-        Time.timeScale = 1f;
-        pauseMenu.SetActive(false);
-        ResetVote();
-        isPaused = false;
-        CloseVotingPanels();
-    }
-
-    private void StartVoting(VoteType voteType)
-    {
-        if (currentVoteType == VoteType.None)
+        if (quitVote >= requiredVote) // 게임종료 찬성투표가 과반수보다 많거나 같으면
         {
-            currentVoteType = voteType;
-            isVoting = true;
-            OpenVotingPanel(voteType);
+            SceneManager.LoadScene("StartScene"); // 스타트씬을 불러와라
+        }
+        else if (continueVote >= requiredVote) // 게임종료 반대투표가 과반수보다 많거나 같으면
+        {
+            ResetVote(); // 투표를 리셋해라
+            CloseVotingPanels(); // 투표 패널을 닫아라
         }
     }
 
-    private void OpenVotingPanel(VoteType voteType)
+    private IEnumerator PauseGame() // 코루틴 일시정지게임 로직
     {
-        switch (voteType)
+        isVoting = true; // 투표진행 켜라
+        isPaused = true; // 일시정지 켜라
+        Time.timeScale = 0f; // 시간을 멈춰라
+        pauseMenu.SetActive(true); // 일시정지 메뉴를 켜라
+        CloseVotingPanels(); // 투표 패널을 닫아라
+        yield return new WaitForSecondsRealtime(pauseDuration); // 게임 시간을 멈췄으니 실제 시간으로 일시정지 시간을 가게 해라
+        Time.timeScale = 1f; // 끝났으면 다시 시간을 흐르게 해라
+        pauseMenu.SetActive(false); // 일시정지 메뉴를 닫아라
+        ResetVote(); // 투표를 리셋해라
+        isPaused = false; // 일시정지 풀어라
+    }
+
+    private void StartVoting(VoteType voteType) // 투표시작
+    {
+        if (currentVoteType == VoteType.None) // 현재 투표값이 아무것도 없다면
         {
-            case VoteType.Pause:
-                pausevotingPanel.SetActive(true);
+            currentVoteType = voteType; // 현재 투표값은 voteType 변수값 적용
+            isVoting = true; // 투표진행 켜라
+            OpenVotingPanel(voteType); // voteType 변수값이 적용된 패널을 켜라
+        }
+    }
+
+    private void OpenVotingPanel(VoteType voteType) // 투표 패널 열기
+    {
+        switch (voteType) // voteType 별 케이스
+        {
+            case VoteType.Pause: // 일시정지 투표
+                pausevotingPanel.SetActive(true); // 일시정지 투표 패널 켜라
                 break;
-            case VoteType.Quit:
-                quitVotingPanel.SetActive(true);
+            case VoteType.Quit: // 게임종료 투표
+                quitVotingPanel.SetActive(true); // 게임종료 투표 패널 켜라
                 break;
         }
     }
 
-    private void CloseVotingPanels()
+    private void CloseVotingPanels() // 투표 패널 닫기
     {
-        pausevotingPanel.SetActive(false);
-        quitVotingPanel.SetActive(false);
+        pausevotingPanel.SetActive(false); // 일시정지 투표 패널 꺼라
+        quitVotingPanel.SetActive(false); // 게임종료 투표 패널 꺼라
     }
 }
