@@ -2485,6 +2485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2911014915057346676}
   - component: {fileID: 3803895820364122457}
+  - component: {fileID: 5142342259895803987}
   m_Layer: 0
   m_Name: VotingManager
   m_TagString: Untagged
@@ -2523,7 +2524,29 @@ MonoBehaviour:
   pausevotingPanel: {fileID: 4715496879794680948}
   quitVotingPanel: {fileID: 6609130059845142483}
   pauseDuration: 10
-  OnVoting: 0
+  OnVotingPanel: 0
+--- !u!114 &5142342259895803987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561171574038379588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &3657898249053408429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3509,7 +3532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1432467079491687456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5503,7 +5526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6444874966171397049
 RectTransform:
   m_ObjectHideFlags: 0
