@@ -2096,6 +2096,7 @@ MonoBehaviour:
   soundMenu: {fileID: 6223070506044354631}
   votingPause: {fileID: 4715496879794680948}
   votingQuit: {fileID: 6609130059845142483}
+  votingSystem: {fileID: 3803895820364122457}
 --- !u!1 &3183375688433378681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2522,6 +2523,7 @@ MonoBehaviour:
   pausevotingPanel: {fileID: 4715496879794680948}
   quitVotingPanel: {fileID: 6609130059845142483}
   pauseDuration: 10
+  OnVoting: 0
 --- !u!1 &3657898249053408429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,7 +3509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1432467079491687456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5501,7 +5503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6444874966171397049
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5970,6 +5972,7 @@ MonoBehaviour:
   soundMenu: {fileID: 9134232030547015766}
   votingPause: {fileID: 8397602088311291782}
   votingQuit: {fileID: 1383365788775416172}
+  votingSystem: {fileID: 3803895820364122457}
 --- !u!1 &7220641762680517419
 GameObject:
   m_ObjectHideFlags: 0

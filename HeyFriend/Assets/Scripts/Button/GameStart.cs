@@ -14,6 +14,6 @@ public class GameStart : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        SceneManager.LoadScene("Jung");
+        SceneManager.LoadScene(4);
     }
 }

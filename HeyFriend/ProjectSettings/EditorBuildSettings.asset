@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage 2.unity
     guid: 07ecd3e4db20cf8469d886092d295b23
+  - enabled: 1
+    path: Assets/Scenes/Kwak.unity
+    guid: c6fffa8ef54125f4284162e8a59085f4
   m_configObjects: {}
