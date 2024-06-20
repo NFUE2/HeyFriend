@@ -6057,7 +6057,8 @@ MonoBehaviour:
   pausevotingPanel: {fileID: 8447086594950166573}
   quitVotingPanel: {fileID: 6348431874632281212}
   pauseDuration: 10
-  isVoting: 0
+  isPaused: 0
+  OnVotingPanel: 0
 --- !u!1 &7395310067568300231
 GameObject:
   m_ObjectHideFlags: 0

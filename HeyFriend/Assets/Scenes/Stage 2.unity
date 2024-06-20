@@ -876,6 +876,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.031677186
       objectReference: {fileID: 0}
+    - target: {fileID: 5142342259895803987, guid: a29e66dda97f3f14cb15f10d99165afc, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6290547514621524456, guid: a29e66dda97f3f14cb15f10d99165afc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.48
