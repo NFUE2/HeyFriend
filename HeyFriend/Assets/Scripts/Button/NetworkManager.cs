@@ -6,7 +6,7 @@ using Photon.Realtime;
 using TMPro;
 using System.Linq.Expressions;
 using Photon.Pun.UtilityScripts;
-
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -30,6 +30,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void OnGameStart()
     {
         PhotonNetwork.JoinRandomOrCreateRoom();
+        StartCoroutine(CheckChangeScene());
     }
 
     private void Update()
@@ -51,19 +52,34 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
-        StartCoroutine(CreatePlayer());
+        //StartCoroutine(CreatePlayer());
     }
 
-    IEnumerator CreatePlayer()
+    IEnumerator CheckChangeScene()
     {
-        yield return new WaitForSeconds(2.0f);
+        int prevSceneNumber, curSceneNumber;
+
+        prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+
+        while (prevSceneNumber == curSceneNumber)
+        {
+            curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+            yield return null;
+        }
 
         PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        base.OnPlayerEnteredRoom(newPlayer);
-        Debug.Log(1);
-    }
+    //IEnumerator CreatePlayer()
+    //{
+    //    yield return new WaitForSeconds(2.0f);
+
+    //    PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+    //}
+
+    //public override void OnPlayerEnteredRoom(Player newPlayer)
+    //{
+    //    base.OnPlayerEnteredRoom(newPlayer);
+    //    Debug.Log(1);
+    //}
 }
