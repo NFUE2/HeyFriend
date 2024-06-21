@@ -32,12 +32,13 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     }
     void Start()
     {
+        if (!pv.IsMine) return;
         playerInputController.OnMoveEvent+= OnMove;
         playerInputController.OnJumpEvent+=JumpMoveMent;
     }
     void FixedUpdate()
     {
-        //if (!pv.IsMine) return;
+        if (!pv.IsMine) return;
         MoveMent();
     }
     private void JumpMoveMent()

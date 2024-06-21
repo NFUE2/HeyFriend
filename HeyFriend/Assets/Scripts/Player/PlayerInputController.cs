@@ -32,6 +32,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnEscape()
     {
+        if (!pv.IsMine) return;
         if (StageManager.instance != null) StageManager.instance.OpenMenu();
     }
 }

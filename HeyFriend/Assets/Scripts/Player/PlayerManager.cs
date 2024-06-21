@@ -17,33 +17,10 @@ public class PlayerManager : MonoBehaviour
         playerMoveController = GetComponent<PlayerMoveController>();
         photonView = GetComponent<PhotonView>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    private void OnCollisionEnter2D(Collision2D other) {
-        bool isFoot = other.contacts[0].normal == Vector2.down;
-        if (other.gameObject.CompareTag("Player")&& isFoot)
-        {
-            other.transform.SetParent(transform);
-            check = true;
-        }
-    }
-    private void OnCollisionStay2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Player")&& check)
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(rigid.velocity.x);
-
-        }
-    }
-    private void OnCollisionExit2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Player")&& check)
-        {
-            other.transform.SetParent(null);
-            other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(0);
-            check = false;
         }
     }
     public void SetPosition(){
