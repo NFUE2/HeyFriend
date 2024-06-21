@@ -14,14 +14,16 @@ public class StageObject : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Coin")
+        if (collision.gameObject.CompareTag("Coin"))
         {
             stage.stagePoint += 1;
             collision.gameObject.SetActive(false);
         }
-        else if (collision.gameObject.tag == "Finish")
+        else if (collision.gameObject.CompareTag("Finish"))
         {
-            stage.NextStage();
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                stage.PlayerFinish(collision.gameObject);
+            }
         }
-    }
-}
+}}
