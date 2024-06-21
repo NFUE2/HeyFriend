@@ -15,12 +15,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI playerCountText;
     public GameObject startBtn;
+
+    private PhotonView photonView;
     //public GameObject player;
 
     //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
 
     private void Awake()
     {
+        photonView = GetComponent<PhotonView>();
         StartCoroutine(CheckChangeScene());
         isFull();
     }
@@ -79,6 +82,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
 
         PhotonNetwork.Instantiate("Player"+playerNumber, Vector3.zero, Quaternion.identity);
-        //SpawnCharacter();
+        photonView.RPC("AddPlayer",RpcTarget.All);
+    }
+    [PunRPC]
+    public void AddPlayer(){
+        Debug.Log("¿‘¿Â");
     }
 }

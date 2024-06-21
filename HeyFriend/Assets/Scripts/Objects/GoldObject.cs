@@ -12,7 +12,7 @@ public class GoldObject : MonoBehaviour
     private void Start()
     {
         GameObject objectManager = GameObject.Find("ObjectManager");
-        stage = objectManager.GetComponent<Stage>();
+       // stage = objectManager.GetComponent<Stage>();
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
