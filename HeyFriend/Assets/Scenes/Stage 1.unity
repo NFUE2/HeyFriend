@@ -6955,6 +6955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2103334610}
   - component: {fileID: 2103334611}
+  - component: {fileID: 2103334612}
   m_Layer: 0
   m_Name: Game Over
   m_TagString: Untagged
@@ -7022,6 +7023,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2103334612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103334608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2251f6615ec73f84197ce2e2937f0423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

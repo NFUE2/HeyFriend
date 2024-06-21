@@ -7,12 +7,12 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody2D rigid;
     private PlayerMoveController playerMoveController;
-
+    private PhotonView photonView;
     void Start()
     {
         rigid=GetComponent<Rigidbody2D>();
         playerMoveController = GetComponent<PlayerMoveController>();
-        //PhotonNetwork.Instantiate("Player", position, Quaternion.identity);  
+        photonView = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -37,5 +37,14 @@ public class PlayerManager : MonoBehaviour
             other.transform.SetParent(null);
             other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(0);
         }
+    }
+
+    public void SetPosition(){
+        photonView.RPC("SetPositionRPC",RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void SetPositionRPC(){
+        transform.position = new Vector3(0, 0, 0);
     }
 }
