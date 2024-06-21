@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class JumpSpot : MonoBehaviour
 {
+    public AudioClip clip;
+    public AudioSource source;
+
     public float jumpPower=10f;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -14,6 +17,7 @@ public class JumpSpot : MonoBehaviour
         if (collision.gameObject.gameObject.CompareTag("Player") && isFoot)
         {
             collision.gameObject.GetComponent<PlayerMoveController>().JumpAction(jumpPower);
+            source.PlayOneShot(clip);
         }
     }
  

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageObject : MonoBehaviour
+public class GoldObject : MonoBehaviour
 {
+    public AudioClip cilp;
+    public AudioSource source;
+
     public Stage stage;
     private void Start()
     {
@@ -14,14 +17,11 @@ public class StageObject : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Coin")
+        if (collision.gameObject.tag == "Player")
         {
             stage.stagePoint += 1;
-            collision.gameObject.SetActive(false);
-        }
-        else if (collision.gameObject.tag == "Finish")
-        {
-            stage.NextStage();
+            source.PlayOneShot(cilp);
+            gameObject.SetActive(false);
         }
     }
 }
