@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
         if (other.gameObject.CompareTag("Player")&& isFoot)
         {
             Debug.Log("비비는 중 ");
-            other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(rigid.velocity.x);
+            //other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(rigid.velocity.x);
         }
     }
     public void SetPosition(){

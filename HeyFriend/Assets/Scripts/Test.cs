@@ -6,17 +6,12 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    private PhotonView pv;
+    public Rigidbody2D rigidbody2D;
+    private void OnCollisionEnter2D(Collision2D other) {
+        rigidbody2D = other.gameObject.GetComponent<Rigidbody2D>();
+    }
 
-    private void Awake(){
-        pv = GetComponent<PhotonView>();
-    }
-    public void OnButton(){
-        pv.RPC("LoadLevel",RpcTarget.AllBuffered);
-    }
-    [PunRPC]
-    public void LoadLevel(){
-        Debug.Log("불러왔음");
-        PhotonNetwork.LoadLevel("Stage 2");
+    void Update(){
+        Debug.Log(rigidbody2D.velocity);
     }
 }

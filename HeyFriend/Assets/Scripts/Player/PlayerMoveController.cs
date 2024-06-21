@@ -18,7 +18,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     public float gravityscale;
     public float velocty_y;
     public float jumpPower;
-    public List<Rigidbody2D> topPlayer;
+    public Rigidbody2D bottomPlayer;
 
     private bool isMove=false;
     [SerializeField] private float speed;
@@ -55,15 +55,20 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     private void MoveMent()
     {
         moveDirection.y = rigidBody2D.velocity.y- gravityscale;
-        rigidBody2D.velocity = moveDirection+ parentMove;
+        if(bottomPlayer==null){
+            rigidBody2D.velocity = moveDirection;
+        }else{
+            rigidBody2D.velocity = moveDirection + bottomPlayer.velocity;;
+        }
+        
         if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
 
-        foreach(Rigidbody2D rb in topPlayer)
-        {
-            Vector2 dir = moveDirection * Time.fixedDeltaTime;
-            rb.MovePosition(rb.position + dir);
-        }
+        // foreach(Rigidbody2D rb in bottomPlayer)
+        // {
+        //     Vector2 dir = moveDirection * Time.fixedDeltaTime;
+        //     rb.MovePosition(rb.position + dir);
+        // }
     }
 
     [PunRPC]
@@ -80,23 +85,23 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         animator.SetTrigger(jumpParamToHash);
     }
 
-    public void AddParentVelocity(float velocity_X){
-        parentMove.x=velocity_X;
-    }
+    // public void AddParentVelocity(float velocity_X){
+    //     parentMove.x=velocity_X;
+    // }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        bool isFoot = collision.contacts[0].normal == Vector2.down;
+        //collision -> 나
+        bool isFoot = collision.contacts[0].normal == Vector2.up;
 
         if (collision.gameObject.gameObject.CompareTag("Player") && isFoot)
-            topPlayer.Add(collision.gameObject.GetComponent<Rigidbody2D>());
+            bottomPlayer=collision.gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-
-        if (topPlayer.Contains(rb)) topPlayer.Remove(rb);
+        if (collision.gameObject.gameObject.CompareTag("Player"))
+            bottomPlayer = null;
     }
 
 }

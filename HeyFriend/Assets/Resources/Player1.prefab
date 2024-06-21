@@ -3015,7 +3015,7 @@ MonoBehaviour:
   gravityscale: 0.5
   velocty_y: 0
   jumpPower: 10
-  topPlayer: []
+  bottomPlayer: {fileID: 0}
   speed: 5
 --- !u!114 &779413574946711653
 MonoBehaviour:
