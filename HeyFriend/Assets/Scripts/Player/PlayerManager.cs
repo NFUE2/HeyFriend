@@ -17,9 +17,11 @@ public class PlayerManager : MonoBehaviour
         playerMoveController = GetComponent<PlayerMoveController>();
         photonView = GetComponent<PhotonView>();
     }
-    private void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Player"))
+    private void OnCollisionEnter2D(Collision2D other) {
+        bool isFoot = other.contacts[0].normal == Vector2.down;
+        if (other.gameObject.CompareTag("Player")&& isFoot)
         {
+            Debug.Log("비비는 중 ");
             other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(rigid.velocity.x);
         }
     }
