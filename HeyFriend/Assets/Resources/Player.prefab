@@ -2524,6 +2524,7 @@ MonoBehaviour:
   pausevotingPanel: {fileID: 4715496879794680948}
   quitVotingPanel: {fileID: 6609130059845142483}
   pauseDuration: 10
+  isPaused: 0
   OnVotingPanel: 0
 --- !u!114 &5142342259895803987
 MonoBehaviour:
