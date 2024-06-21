@@ -18,6 +18,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     public float gravityscale;
     public float velocty_y;
     public float jumpPower;
+    public List<Rigidbody2D> topPlayer;
 
     private bool isMove=false;
     [SerializeField] private float speed;
@@ -57,6 +58,12 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         rigidBody2D.velocity = moveDirection+ parentMove;
         if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
+
+        foreach(Rigidbody2D rb in topPlayer)
+        {
+            Vector2 dir = moveDirection * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + dir);
+        }
     }
 
     [PunRPC]
@@ -76,4 +83,20 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     public void AddParentVelocity(float velocity_X){
         parentMove.x=velocity_X;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        bool isFoot = collision.contacts[0].normal == Vector2.down;
+
+        if (collision.gameObject.gameObject.CompareTag("Player") && isFoot)
+            topPlayer.Add(collision.gameObject.GetComponent<Rigidbody2D>());
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        if (topPlayer.Contains(rb)) topPlayer.Remove(rb);
+    }
+
 }
