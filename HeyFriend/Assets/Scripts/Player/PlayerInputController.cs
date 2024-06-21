@@ -11,7 +11,7 @@ public class PlayerInputController : MonoBehaviour
     private void Awake() {
         pv = GetComponent<PhotonView>();
     }
-    public void Move(InputAction.CallbackContext context){
+    public void Move(InputAction.CallbackContext context) {
         if (!pv.IsMine) return;
         Vector2 direction = context.ReadValue<Vector2>().normalized;
         if (context.phase == InputActionPhase.Performed)
@@ -24,9 +24,14 @@ public class PlayerInputController : MonoBehaviour
         }
     }
 
-    public void Jump(InputAction.CallbackContext context){
+    public void Jump(InputAction.CallbackContext context) {
         if (!pv.IsMine) return;
         if (context.phase == InputActionPhase.Started)
             OnJumpEvent?.Invoke();
+    }
+
+    public void OnEscape()
+    {
+        if (StageManager.instance != null) StageManager.instance.OpenMenu();
     }
 }

@@ -11,8 +11,12 @@ public class StageManager : MonoBehaviourPunCallbacks
     public TextMeshProUGUI playerCountText;
     //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
 
+    public static StageManager instance;
+    public GameObject menu;
+
     private void Awake()
     {
+        instance = this;
         PhotonNetwork.AutomaticallySyncScene = true;
 
         //string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
@@ -30,13 +34,6 @@ public class StageManager : MonoBehaviourPunCallbacks
         SetPlayerText();
     }
 
-    [PunRPC]
-    private void SpawnCharacter(GameObject obj)
-    {
-        Debug.Log(1);
-    }
-
-
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         SetPlayerText();
@@ -46,5 +43,10 @@ public class StageManager : MonoBehaviourPunCallbacks
     {
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         playerCountText.text = playerCount.ToString();
+    }
+
+    public void OpenMenu()
+    {
+        menu.SetActive(true);
     }
 }
