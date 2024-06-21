@@ -5529,6 +5529,7 @@ GameObject:
   - component: {fileID: 8925468772357401355}
   - component: {fileID: 2321341586734002203}
   - component: {fileID: -6551898849365066610}
+  - component: {fileID: 7808924868895680676}
   m_Layer: 0
   m_Name: Player4
   m_TagString: Player
@@ -5907,6 +5908,18 @@ MonoBehaviour:
   votingPause: {fileID: 8397602088311291782}
   votingQuit: {fileID: 1383365788775416172}
   votingSystem: {fileID: 3803895820364122457}
+--- !u!114 &7808924868895680676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206043371295361826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce982e63e97a424db90cb3f5c16cfb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7220641762680517419
 GameObject:
   m_ObjectHideFlags: 0
