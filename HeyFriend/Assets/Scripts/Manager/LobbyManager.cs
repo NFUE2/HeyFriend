@@ -17,6 +17,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public GameObject startBtn;
 
     private PhotonView photonView;
+
+    private CameraManager cameraManager;
+    int playerNumber;
+    GameObject obj;
     //public GameObject player;
 
     //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
@@ -24,6 +28,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
+        cameraManager = Camera.main.GetComponent<CameraManager>();
         StartCoroutine(CheckChangeScene());
         isFull();
     }
@@ -79,13 +84,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         while (PhotonNetwork.NetworkClientState != ClientState.Joined)
             yield return null;
 
-        int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
 
-        PhotonNetwork.Instantiate("Player"+playerNumber, Vector3.zero, Quaternion.identity);
+        obj = PhotonNetwork.Instantiate("Player"+playerNumber, Vector3.zero, Quaternion.identity);
         photonView.RPC("AddPlayer",RpcTarget.All);
     }
     [PunRPC]
     public void AddPlayer(){
-        Debug.Log("¿‘¿Â");
+        cameraManager.players.Add("Player"+ playerNumber, obj);        
     }
 }
