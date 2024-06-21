@@ -17,7 +17,7 @@ public class Stage : MonoBehaviour
     public GameObject Finish;
 
     private List<string> stageNames = new List<string>
-    { "Stage 1", "Stage 2", "Stage 3", "Stage 4", "Stage 5", "Stage 6", "Stage 7", "Stage 8", "Stage 9", "Stage 10"};
+    { "Stage 1", "Stage 2", "Stage 3", "Stage 4", "Stage 5"};
     private static Stage instance;
 
     void Awake()
@@ -34,7 +34,6 @@ public class Stage : MonoBehaviour
     }
     public void NextStage()
     {
-        totalPoint += stagePoint;
         stagePoint = 0;
         if (stageIndex < stageNames.Count - 1)
         {
