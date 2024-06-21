@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Stage : MonoBehaviour
 {
     public int totalPoint;
     public int stagePoint;
-    public int stageIndex;
+    public int stageIndex = 0;
 
     public TMP_Text UIStage;
     public TMP_Text UITotalPoint;
@@ -17,7 +16,7 @@ public class Stage : MonoBehaviour
     public GameObject Finish;
 
     private List<string> stageNames = new List<string>
-    { "Stage 1", "Stage 2", "Stage 3", "Stage 4", "Stage 5"};
+    { "STAGE 1", "STAGE 2", "STAGE 3", "STAGE 4", "STAGE 5","Game Clear"};
     private static Stage instance;
 
     void Awake()
@@ -32,25 +31,40 @@ public class Stage : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+        UpdateUI();
+    }
+
     public void NextStage()
     {
-        stagePoint = 0;
+        totalPoint += stagePoint; 
+        stagePoint = 0;           
         if (stageIndex < stageNames.Count - 1)
         {
             stageIndex++;
             SceneManager.LoadScene(stageNames[stageIndex]);
         }
-        Finish.SetActive(false);
+        else
+        {
+            Finish.SetActive(true);
+        }
     }
 
     void Update()
     {
-        UITotalPoint.text = (totalPoint + " /").ToString();
-        UIStagePoint.text = (stagePoint).ToString();
+        UpdateUI();
 
         if (stagePoint >= totalPoint)
         {
             Finish.SetActive(true);
         }
+    }
+
+    private void UpdateUI()
+    {
+        UIStage.text = stageNames[stageIndex];
+        UITotalPoint.text = totalPoint.ToString() + " /";
+        UIStagePoint.text = stagePoint.ToString();
     }
 }
