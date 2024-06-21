@@ -34,7 +34,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public void OnGameStart()
     {
-        RoomOptions options = new RoomOptions { MaxPlayers = 2 };
+        RoomOptions options = new RoomOptions { MaxPlayers = 3 };
 
         PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,"Test",options);
         //StartCoroutine(CheckChangeScene());
