@@ -9,20 +9,17 @@ using Unity.VisualScripting;
 public class StageManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI playerCountText;
-    Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
-
-    PhotonView pv;
+    //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
 
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
 
-        pv = GetComponent<PhotonView>();
+        //string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
+        int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        GameObject obj = PhotonNetwork.Instantiate("Player" + playerNumber, new Vector3(0, 0, 0), Quaternion.identity);
 
-        string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
-        GameObject obj = PhotonNetwork.Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
-
-        pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
+        //pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
 
         //obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
         //pv.RPC("SpawnCharacter", RpcTarget.OthersBuffered);

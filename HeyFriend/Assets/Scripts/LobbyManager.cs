@@ -15,7 +15,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI playerCountText;
     public GameObject startBtn;
-    public GameObject player;
+    //public GameObject player;
 
     //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
 
@@ -76,14 +76,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         while (PhotonNetwork.NetworkClientState != ClientState.Joined)
             yield return null;
 
-        player = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
-        //pv.RPC("ChangeColor", RpcTarget.AllBuffered);
+        int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+
+        PhotonNetwork.Instantiate("Player"+playerNumber, Vector3.zero, Quaternion.identity);
         //SpawnCharacter();
     }
-
-    //[PunRPC]
-    //private void ChangeColor()
-    //{
-    //    player.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
-    //}
 }
