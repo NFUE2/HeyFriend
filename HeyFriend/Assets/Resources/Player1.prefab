@@ -2764,7 +2764,6 @@ GameObject:
   - component: {fileID: 1742248253634311470}
   - component: {fileID: 1754001932113688122}
   - component: {fileID: 2242518078718066288}
-  - component: {fileID: -5238061088908334569}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -3016,6 +3015,7 @@ MonoBehaviour:
   gravityscale: 0.5
   velocty_y: 0
   jumpPower: 10
+  topPlayer: []
   speed: 5
 --- !u!114 &779413574946711653
 MonoBehaviour:
@@ -3143,18 +3143,6 @@ MonoBehaviour:
   votingPause: {fileID: 537777242919181174}
   votingQuit: {fileID: 7357175876707119966}
   votingSystem: {fileID: 1046825210061752006}
---- !u!114 &-5238061088908334569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3688324315713160388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce982e63e97a424db90cb3f5c16cfb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3732090855148258026
 GameObject:
   m_ObjectHideFlags: 0
