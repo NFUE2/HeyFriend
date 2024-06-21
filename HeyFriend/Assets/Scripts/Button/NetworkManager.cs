@@ -29,14 +29,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
 
         StartCoroutine(NetworkCheck());
+
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
     public void OnGameStart()
     {
-        RoomOptions options = new RoomOptions { MaxPlayers = 2 };
+        RoomOptions options = new RoomOptions { MaxPlayers = 4 };
 
         PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,"Test",options);
-
-        StartCoroutine(CheckChangeScene());
+        //StartCoroutine(CheckChangeScene());
     }
 
     private void Update()
@@ -55,22 +56,22 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         connectPanel.SetActive(false);
     }
 
-    IEnumerator CheckChangeScene()
-    {
-        PhotonNetwork.LoadLevel(1);
+    //IEnumerator CheckChangeScene()
+    //{
+    //    PhotonNetwork.LoadLevel(1);
 
-        //int prevSceneNumber, curSceneNumber;
-        //prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+    //    //int prevSceneNumber, curSceneNumber;
+    //    //prevSceneNumber = curSceneNumber = SceneManager.GetActiveScene().buildIndex;
 
-        while (PhotonNetwork.NetworkClientState != ClientState.Joined)
-        {
-            //curSceneNumber = SceneManager.GetActiveScene().buildIndex;
-            yield return null;
-        }
+    //    while (PhotonNetwork.NetworkClientState != ClientState.Joined)
+    //    {
+    //        //curSceneNumber = SceneManager.GetActiveScene().buildIndex;
+    //        yield return null;
+    //    }
 
-        //GameObject obj = PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
-        //isMaster = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
-    }
+    //    //GameObject obj = PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
+    //    //isMaster = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
+    //}
 
 
 

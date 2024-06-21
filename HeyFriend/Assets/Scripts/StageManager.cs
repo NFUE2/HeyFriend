@@ -4,21 +4,32 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using Unity.VisualScripting;
 
 public class StageManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI playerCountText;
-    private int playerCount;
-    Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
+    //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
 
+    public static StageManager instance;
+    public GameObject menu;
 
     private void Awake()
     {
-        string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
-        PhotonNetwork.Instantiate(player,Vector2.zero,Quaternion.identity);
+        instance = this;
+        PhotonNetwork.AutomaticallySyncScene = true;
 
-        GameObject obj = PhotonNetwork.Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
-        obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
+        //string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
+        int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        GameObject obj = PhotonNetwork.Instantiate("Player" + playerNumber, new Vector3(0, 0, 0), Quaternion.identity);
+
+        //pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
+
+        //obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
+        //pv.RPC("SpawnCharacter", RpcTarget.OthersBuffered);
+        //SpawnCharacter();
+        //PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
+        //pv.RPC("SpawnCharacter",)
 
         SetPlayerText();
     }
@@ -30,7 +41,12 @@ public class StageManager : MonoBehaviourPunCallbacks
 
     private void SetPlayerText()
     {
-        playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         playerCountText.text = playerCount.ToString();
+    }
+
+    public void OpenMenu()
+    {
+        menu.SetActive(true);
     }
 }
