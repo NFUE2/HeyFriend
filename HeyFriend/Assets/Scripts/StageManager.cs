@@ -4,24 +4,41 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using Unity.VisualScripting;
 
 public class StageManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI playerCountText;
-    private int playerCount;
     Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
 
+    PhotonView pv;
 
     private void Awake()
     {
-        string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
-        PhotonNetwork.Instantiate(player,Vector2.zero,Quaternion.identity);
+        PhotonNetwork.AutomaticallySyncScene = true;
 
+        pv = GetComponent<PhotonView>();
+
+        string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
         GameObject obj = PhotonNetwork.Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
-        obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
+
+        pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
+
+        //obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
+        //pv.RPC("SpawnCharacter", RpcTarget.OthersBuffered);
+        //SpawnCharacter();
+        //PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
+        //pv.RPC("SpawnCharacter",)
 
         SetPlayerText();
     }
+
+    [PunRPC]
+    private void SpawnCharacter(GameObject obj)
+    {
+        Debug.Log(1);
+    }
+
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
@@ -30,7 +47,7 @@ public class StageManager : MonoBehaviourPunCallbacks
 
     private void SetPlayerText()
     {
-        playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         playerCountText.text = playerCount.ToString();
     }
 }

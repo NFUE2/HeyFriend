@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using System.ComponentModel;
+using System.IO;
 
 
 
@@ -13,28 +15,40 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI playerCountText;
     public GameObject startBtn;
+    public GameObject player;
+
+    //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
 
     private void Awake()
     {
-        PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
-    }
-
-    //참가자라면 모두 사용
-    public override void OnJoinedRoom()
-    {
+        StartCoroutine(CheckChangeScene());
         isFull();
     }
+    //참가자라면 모두 사용
+
+    //public override void OnJoinedRoom()
+    //{
+        
+    //    Debug.Log(1);
+    //}
     
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if(isFull() && PhotonNetwork.IsMasterClient)
+        bool isFool = isFull();
+
+        if (isFool) PhotonNetwork.CurrentRoom.IsOpen = false;
+
+        if (isFool && PhotonNetwork.IsMasterClient)
             startBtn.SetActive(true);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        if(!isFull()) startBtn.SetActive(false);
+        if(!isFull())
+        {
+            startBtn.SetActive(false);
+            PhotonNetwork.CurrentRoom.IsOpen = true;
+        }
     }
 
     bool isFull()
@@ -56,4 +70,20 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.LoadLevel(2);
     }
+
+    IEnumerator CheckChangeScene()
+    {
+        while (PhotonNetwork.NetworkClientState != ClientState.Joined)
+            yield return null;
+
+        player = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        //pv.RPC("ChangeColor", RpcTarget.AllBuffered);
+        //SpawnCharacter();
+    }
+
+    //[PunRPC]
+    //private void ChangeColor()
+    //{
+    //    player.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
+    //}
 }

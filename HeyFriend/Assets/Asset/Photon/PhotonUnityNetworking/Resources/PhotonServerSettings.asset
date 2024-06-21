@@ -46,6 +46,9 @@ MonoBehaviour:
   - FallingCoroutine
   - LoadLevel
   - FilpXRPC
+  - SpawnCharacter
+  - Test
+  - ChangeColor
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
