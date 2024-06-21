@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerMoveController : MonoBehaviourPunCallbacks
+public class PlayerMoveController : MonoBehaviourPunCallbacks, IPunObservable
 {
     PlayerInputController playerInputController;
     Rigidbody2D rigidBody2D;
@@ -63,7 +63,6 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         spriteRenderer.flipX = x <= 0; /*? true : false;*/
     }
 
-
     public void JumpAction(float jumpPower)
     {
         Debug.Log("점프액션");
@@ -74,4 +73,19 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     public void AddParentVelocity(float velocity_X){
         parentMove.x=velocity_X;
     }
+<<<<<<< Updated upstream
+=======
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.gameObject.CompareTag("Player"))
+            bottomPlayer = null;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+            stream.SendNext(transform.position);
+    }
+>>>>>>> Stashed changes
 }
