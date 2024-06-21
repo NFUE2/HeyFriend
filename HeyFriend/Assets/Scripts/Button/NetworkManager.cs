@@ -22,6 +22,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void Awake()
     {
+        PhotonNetwork.SendRate = 60;
+        PhotonNetwork.SerializationRate = 30;
+        PhotonNetwork.AutomaticallySyncScene = true;
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
@@ -30,11 +34,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         StartCoroutine(NetworkCheck());
 
-        PhotonNetwork.AutomaticallySyncScene = true;
     }
     public void OnGameStart()
     {
-        RoomOptions options = new RoomOptions { MaxPlayers = 4 };
+        RoomOptions options = new RoomOptions { MaxPlayers = 2 };
 
         PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,"Test",options);
         //StartCoroutine(CheckChangeScene());
