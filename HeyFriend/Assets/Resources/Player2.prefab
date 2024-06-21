@@ -5530,7 +5530,7 @@ GameObject:
   - component: {fileID: 2321341586734002203}
   - component: {fileID: -6551898849365066610}
   m_Layer: 0
-  m_Name: Player4
+  m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5779,7 +5779,7 @@ MonoBehaviour:
   gravityscale: 0.5
   velocty_y: 0
   jumpPower: 10
-  topPlayer: []
+  bottomPlayer: {fileID: 0}
   speed: 5
 --- !u!114 &1883403828670976646
 MonoBehaviour:
@@ -5835,7 +5835,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -6447722072507503168, guid: 10f3cacccb0c4c547be76836eba20664, type: 3}
-  m_Color: {r: 0, g: 0.26089263, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9830491, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

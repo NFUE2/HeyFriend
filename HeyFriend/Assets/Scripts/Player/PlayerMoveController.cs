@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerMoveController : MonoBehaviourPunCallbacks, IPunObservable
+public class PlayerMoveController : MonoBehaviourPunCallbacks
 {
     PlayerInputController playerInputController;
     Rigidbody2D rigidBody2D;
@@ -18,6 +18,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks, IPunObservable
     public float gravityscale;
     public float velocty_y;
     public float jumpPower;
+    public Rigidbody2D bottomPlayer;
 
     private bool isMove=false;
     [SerializeField] private float speed;
@@ -32,11 +33,13 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Start()
     {
+        if (!pv.IsMine) return;
         playerInputController.OnMoveEvent+= OnMove;
         playerInputController.OnJumpEvent+=JumpMoveMent;
     }
     void FixedUpdate()
     {
+        if (!pv.IsMine) return;
         MoveMent();
     }
     private void JumpMoveMent()
@@ -52,9 +55,20 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks, IPunObservable
     private void MoveMent()
     {
         moveDirection.y = rigidBody2D.velocity.y- gravityscale;
-        rigidBody2D.velocity = moveDirection+ parentMove;
+        if(bottomPlayer==null){
+            rigidBody2D.velocity = moveDirection;
+        }else{
+            rigidBody2D.velocity = moveDirection + bottomPlayer.velocity;;
+        }
+        
         if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
+
+        // foreach(Rigidbody2D rb in bottomPlayer)
+        // {
+        //     Vector2 dir = moveDirection * Time.fixedDeltaTime;
+        //     rb.MovePosition(rb.position + dir);
+        // }
     }
 
     [PunRPC]
@@ -63,6 +77,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks, IPunObservable
         spriteRenderer.flipX = x <= 0; /*? true : false;*/
     }
 
+
     public void JumpAction(float jumpPower)
     {
         Debug.Log("점프액션");
@@ -70,11 +85,18 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks, IPunObservable
         animator.SetTrigger(jumpParamToHash);
     }
 
-    public void AddParentVelocity(float velocity_X){
-        parentMove.x=velocity_X;
+    // public void AddParentVelocity(float velocity_X){
+    //     parentMove.x=velocity_X;
+    // }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //collision -> 나
+        bool isFoot = collision.contacts[0].normal == Vector2.up;
+
+        if (collision.gameObject.gameObject.CompareTag("Player") && isFoot)
+            bottomPlayer=collision.gameObject.GetComponent<Rigidbody2D>();
     }
-<<<<<<< Updated upstream
-=======
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -82,10 +104,4 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks, IPunObservable
             bottomPlayer = null;
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-            stream.SendNext(transform.position);
-    }
->>>>>>> Stashed changes
 }

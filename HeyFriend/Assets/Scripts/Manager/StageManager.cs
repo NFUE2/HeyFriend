@@ -9,20 +9,21 @@ using Unity.VisualScripting;
 public class StageManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI playerCountText;
-    Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
+    //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
 
-    PhotonView pv;
+    public static StageManager instance;
+    public GameObject menu;
 
     private void Awake()
     {
+        instance = this;
         PhotonNetwork.AutomaticallySyncScene = true;
 
-        pv = GetComponent<PhotonView>();
+        //string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
+        int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        GameObject obj = PhotonNetwork.Instantiate("Player" + playerNumber, new Vector3(0, 0, 0), Quaternion.identity);
 
-        string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
-        GameObject obj = PhotonNetwork.Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
-
-        pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
+        //pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
 
         //obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
         //pv.RPC("SpawnCharacter", RpcTarget.OthersBuffered);
@@ -33,13 +34,6 @@ public class StageManager : MonoBehaviourPunCallbacks
         SetPlayerText();
     }
 
-    [PunRPC]
-    private void SpawnCharacter(GameObject obj)
-    {
-        Debug.Log(1);
-    }
-
-
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         SetPlayerText();
@@ -49,5 +43,10 @@ public class StageManager : MonoBehaviourPunCallbacks
     {
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         playerCountText.text = playerCount.ToString();
+    }
+
+    public void OpenMenu()
+    {
+        menu.SetActive(true);
     }
 }

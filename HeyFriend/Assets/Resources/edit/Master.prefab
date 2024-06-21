@@ -104,7 +104,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7684,8 +7684,9 @@ GameObject:
   - component: {fileID: 8925468772357401355}
   - component: {fileID: 2321341586734002203}
   - component: {fileID: 2401353712167531472}
+  - component: {fileID: 2523386509639447279}
   m_Layer: 0
-  m_Name: MasterPlayer
+  m_Name: Master
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7804,7 +7805,7 @@ MonoBehaviour:
   - {fileID: 592956267412768150}
   - {fileID: 8319376970060103778}
   - {fileID: 2321341586734002203}
-  sceneViewId: 0
+  sceneViewId: 12
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &592956267412768150
@@ -8046,6 +8047,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce982e63e97a424db90cb3f5c16cfb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2523386509639447279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206043371295361826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b44651a960bc9a4e952dc82080b87ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: {fileID: 0}
 --- !u!1 &7306299939591491030
 GameObject:
   m_ObjectHideFlags: 0
