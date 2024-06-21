@@ -22,8 +22,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void Awake()
     {
-        PhotonNetwork.SendRate = 60;
-        PhotonNetwork.SerializationRate = 30;
+        PhotonNetwork.SendRate = 30;
+        PhotonNetwork.SerializationRate = 10;
         PhotonNetwork.AutomaticallySyncScene = true;
 
         Instance = this;
