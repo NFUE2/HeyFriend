@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class PlayerManager : MonoBehaviour
     private Rigidbody2D rigid;
     private PlayerMoveController playerMoveController;
     private PhotonView photonView;
+
+    private bool check;
     void Start()
     {
         rigid=GetComponent<Rigidbody2D>();
@@ -20,25 +23,29 @@ public class PlayerManager : MonoBehaviour
     {
 
     }
-    
-    private void OnTriggerEnter2D(Collider2D other) { //other값이 밟은 사람
-        if(other.gameObject.CompareTag("Player")){
+    private void OnCollisionEnter2D(Collision2D other) {
+        bool isFoot = other.contacts[0].normal == Vector2.down;
+        if (other.gameObject.CompareTag("Player")&& isFoot)
+        {
             other.transform.SetParent(transform);
+            check = true;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Player")&& check)
+        {
+            other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(rigid.velocity.x);
 
         }
     }
-    private void OnTriggerStay2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")){
-            other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(rigid.velocity.x);
-        }
-    }
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")){
+    private void OnCollisionExit2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Player")&& check)
+        {
             other.transform.SetParent(null);
             other.gameObject.GetComponent<PlayerMoveController>().AddParentVelocity(0);
+            check = false;
         }
     }
-
     public void SetPosition(){
         photonView.RPC("SetPositionRPC",RpcTarget.All);
     }
