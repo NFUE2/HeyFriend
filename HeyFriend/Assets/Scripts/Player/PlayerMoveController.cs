@@ -37,6 +37,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     }
     void FixedUpdate()
     {
+        //if (!pv.IsMine) return;
         MoveMent();
     }
     private void JumpMoveMent()

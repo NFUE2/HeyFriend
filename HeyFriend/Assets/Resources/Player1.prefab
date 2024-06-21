@@ -2763,7 +2763,6 @@ GameObject:
   - component: {fileID: 1637157657258888037}
   - component: {fileID: 1742248253634311470}
   - component: {fileID: 1754001932113688122}
-  - component: {fileID: 2848641312101509748}
   - component: {fileID: 2242518078718066288}
   m_Layer: 0
   m_Name: Player1
@@ -2877,7 +2876,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
@@ -3126,18 +3125,6 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
---- !u!114 &2848641312101509748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3688324315713160388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce982e63e97a424db90cb3f5c16cfb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2242518078718066288
 MonoBehaviour:
   m_ObjectHideFlags: 0
