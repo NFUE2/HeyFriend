@@ -2764,7 +2764,7 @@ GameObject:
   - component: {fileID: 1742248253634311470}
   - component: {fileID: 1754001932113688122}
   - component: {fileID: 2242518078718066288}
-  - component: {fileID: 1125574506496315658}
+  - component: {fileID: 2380253155253902388}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -3143,7 +3143,7 @@ MonoBehaviour:
   votingPause: {fileID: 537777242919181174}
   votingQuit: {fileID: 7357175876707119966}
   votingSystem: {fileID: 1046825210061752006}
---- !u!114 &1125574506496315658
+--- !u!114 &2380253155253902388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3152,12 +3152,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3688324315713160388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b44651a960bc9a4e952dc82080b87ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce982e63e97a424db90cb3f5c16cfb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cilp: {fileID: 0}
-  source: {fileID: 0}
-  stage: {fileID: 0}
 --- !u!1 &3732090855148258026
 GameObject:
   m_ObjectHideFlags: 0
