@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using System.ComponentModel;
 using System.IO;
 using System;
+using UnityEngine.TextCore.Text;
 
 
 
@@ -21,11 +22,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private CameraManager cameraManager;
 
-    private Dictionary<string , float> players = new Dictionary<string, float>();
     string key;
 
-    string[] keys;
-    float[] values;
+    public string[] keys;
+    public float[] values;
     //public GameObject player;
 
     //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
@@ -37,14 +37,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         StartCoroutine(CheckChangeScene());
         isFull();
     }
+
     //참가자라면 모두 사용
 
     //public override void OnJoinedRoom()
     //{
-        
+
     //    Debug.Log(1);
     //}
-    
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         key = $"Player{newPlayer.ActorNumber}(Clone)";
@@ -54,12 +54,19 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         if (isFool && PhotonNetwork.IsMasterClient)
             startBtn.SetActive(true);
-        if(PhotonNetwork.IsMasterClient){
-            players.Add(key, 0);
-        }
-        Debug.Log(key);
-    }
 
+        if(PhotonNetwork.IsMasterClient){
+            cameraManager.players.Add(key, 0);
+            ChangeToArray(cameraManager.players);
+            photonView.RPC("SendDictionary",RpcTarget.OthersBuffered,keys,values);
+        }
+        Debug.Log("OnPlayerEnteredRoom"+ key);
+    }
+    [PunRPC]
+    private void SendDictionary(string[] keys, float[] values){
+        Debug.Log("받았다.");
+        ChangeToDictioniary(keys,values);
+    }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         if(!isFull())
@@ -97,15 +104,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
 
         GameObject obj = PhotonNetwork.Instantiate("Player"+playerNumber, Vector3.zero, Quaternion.identity);
-        if(players.ContainsKey(key)){
-            players[key] = obj.transform.position.x;
+        key = $"Player{playerNumber}(Clone)";
+        if (cameraManager.players.ContainsKey(key)){
+            cameraManager.players[key] = obj.transform.position.x;
         }else{
-            players.Add(key, obj.transform.position.x);
+            cameraManager.players.Add(key, obj.transform.position.x);
         }
-        ChangeToArray(players);
-        photonView.RPC("AddPlayer",RpcTarget.All, playerNumber,obj.transform.position.x);
+        Debug.Log("CheckChangeScene" + key);
     }
-
+    
     private void ChangeToArray(Dictionary<string, float> players)
     {
         keys = new string[players.Count];
@@ -125,12 +132,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void ChangeToDictioniary(string[] keys, float[] values)
     {
         for(int i=0; i<keys.Length;i++){
-            players.Add(keys[i],values[i]);
+            cameraManager.players.Add(keys[i],values[i]);
         }
     }
 
-    [PunRPC]
-    public void AddPlayer(int num,float pos){
-        cameraManager.players.Add("Player"+ num+"(Clone)", pos);        
-    }
 }
