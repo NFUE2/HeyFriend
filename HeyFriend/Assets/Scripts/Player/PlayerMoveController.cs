@@ -50,7 +50,11 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         MoveMent();
         
         //추가사항
-        cameraManager.players[gameObject.name] = transform.position.x;
+        PV.RPC("Pos",RpcTarget.All,gameObject.name,transform.position.x);
+    }
+    [PunRPC]
+    void Pos(string name, float posX){
+        cameraManager.players[name] = posX;
     }
     private void JumpMoveMent()
     {

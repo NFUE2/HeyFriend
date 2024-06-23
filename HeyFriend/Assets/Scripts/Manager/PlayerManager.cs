@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     [PunRPC]
     private void SetPositionRPC(){
+        Debug.Log("실행");
         transform.position = new Vector3(0, 0, 0);
     }
 }
