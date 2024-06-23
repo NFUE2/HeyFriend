@@ -9,7 +9,9 @@ public class PlayerManager : MonoBehaviour
 
     private PhotonView photonView;
 
-
+    private void Start(){
+        photonView = GetComponent<PhotonView>();
+    }
 
     public void SetPosition(){
         photonView.RPC("SetPositionRPC",RpcTarget.All);
