@@ -23,6 +23,9 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     private bool isMove=false;
     [SerializeField] private float speed;
 
+
+    //추가사항
+    CameraManager cameraManager;
     // Start is called before the first frame update
     private void Awake() {
         playerInputController = GetComponent<PlayerInputController>();
@@ -30,6 +33,9 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         PV = GetComponent<PhotonView>();
+
+        //추가사항
+        cameraManager = Camera.main.GetComponent<CameraManager>();
     }
     void Start()
     {
@@ -63,6 +69,8 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         
         if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
+        
+        //추가사항
 
         // foreach(Rigidbody2D rb in bottomPlayer)
         // {

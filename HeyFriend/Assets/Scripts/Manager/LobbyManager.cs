@@ -8,6 +8,7 @@ using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using System.ComponentModel;
 using System.IO;
+using System;
 
 
 
@@ -19,8 +20,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private PhotonView photonView;
 
     private CameraManager cameraManager;
-    int playerNumber;
-    GameObject obj;
+
+    private Dictionary<string , float> players = new Dictionary<string, float>();
+    string key;
+
+    string[] keys;
+    float[] values;
     //public GameObject player;
 
     //Color[] color = new Color[] { Color.yellow, Color.green, Color.blue, Color.red };
@@ -42,12 +47,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        key = $"Player{newPlayer.ActorNumber}(Clone)";
         bool isFool = isFull();
 
         if (isFool) PhotonNetwork.CurrentRoom.IsOpen = false;
 
         if (isFool && PhotonNetwork.IsMasterClient)
             startBtn.SetActive(true);
+        if(PhotonNetwork.IsMasterClient){
+            players.Add(key, 0);
+        }
+        Debug.Log(key);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -84,13 +94,43 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         while (PhotonNetwork.NetworkClientState != ClientState.Joined)
             yield return null;
 
-        playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
 
-        obj = PhotonNetwork.Instantiate("Player"+playerNumber, Vector3.zero, Quaternion.identity);
-        photonView.RPC("AddPlayer",RpcTarget.All);
+        GameObject obj = PhotonNetwork.Instantiate("Player"+playerNumber, Vector3.zero, Quaternion.identity);
+        if(players.ContainsKey(key)){
+            players[key] = obj.transform.position.x;
+        }else{
+            players.Add(key, obj.transform.position.x);
+        }
+        ChangeToArray(players);
+        photonView.RPC("AddPlayer",RpcTarget.All, playerNumber,obj.transform.position.x);
     }
+
+    private void ChangeToArray(Dictionary<string, float> players)
+    {
+        keys = new string[players.Count];
+        values = new float[players.Count];
+        int i=0;
+        foreach(string key in players.Keys){
+            keys[i] = key;
+            i++;
+        }
+        i =0;
+        foreach(float value in players.Values){
+            values[i] = value;
+            i++;
+        }
+    }
+
+    private void ChangeToDictioniary(string[] keys, float[] values)
+    {
+        for(int i=0; i<keys.Length;i++){
+            players.Add(keys[i],values[i]);
+        }
+    }
+
     [PunRPC]
-    public void AddPlayer(){
-        cameraManager.players.Add("Player"+ playerNumber, obj);        
+    public void AddPlayer(int num,float pos){
+        cameraManager.players.Add("Player"+ num+"(Clone)", pos);        
     }
 }

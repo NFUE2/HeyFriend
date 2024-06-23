@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public Dictionary<string, GameObject> players = new Dictionary<string, GameObject>();
+    public Dictionary<string, float> players = new Dictionary<string, float>();
     private float totalposition_x;
     private float positionAverage;
 
@@ -17,8 +17,8 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         if(players.Count<=0)return;
-        foreach(KeyValuePair<string,GameObject> player in players){
-            totalposition_x += player.Value.transform.position.x;
+        foreach(KeyValuePair<string,float> player in players){
+            totalposition_x += player.Value;
         }
         positionAverage = totalposition_x/players.Count;
         transform.position = new Vector3(positionAverage, cusPosition_y,-10);
