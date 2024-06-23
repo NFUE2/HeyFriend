@@ -132,6 +132,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void ChangeToDictioniary(string[] keys, float[] values)
     {
         for(int i=0; i<keys.Length;i++){
+            if(cameraManager.players.ContainsKey(keys[i]))return;
             cameraManager.players.Add(keys[i],values[i]);
         }
     }

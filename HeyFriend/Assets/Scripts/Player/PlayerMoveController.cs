@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEditor;
 
 public class PlayerMoveController : MonoBehaviourPunCallbacks
 {
@@ -47,6 +48,9 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     {
         if (!pv.IsMine) return;
         MoveMent();
+        
+        //추가사항
+        cameraManager.players[gameObject.name] = transform.position.x;
     }
     private void JumpMoveMent()
     {
