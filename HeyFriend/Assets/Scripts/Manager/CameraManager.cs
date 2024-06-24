@@ -27,10 +27,8 @@ public class CameraManager : MonoBehaviourPunCallbacks,IPunObservable
         int i=0;
         foreach(KeyValuePair<string,float> player in players){
             totalposition_x += player.Value;
-            Debug.Log(player.Value+" : " + i);
             i++;
         }
-        Debug.Log(players.Count);
         positionAverage = totalposition_x/players.Count;
         transform.position = new Vector3(positionAverage, cusPosition_y,-10);
         totalposition_x = 0;

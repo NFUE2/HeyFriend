@@ -7,26 +7,19 @@ public class FinishTrigger : MonoBehaviour
     public Stage stage;  
     private int playerCount = 0;
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))  
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("들어옴");
+        if (other.CompareTag("Player"))
         {
             playerCount++;
             CheckPlayerCount();
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player")) 
-        {
-            playerCount--;
+            stage.PlayerFinish(other.gameObject);
         }
     }
 
     void CheckPlayerCount()
     {
-        if (playerCount >= 4)
+        if (playerCount >= 1)
         {
             stage.NextStage();
         }
