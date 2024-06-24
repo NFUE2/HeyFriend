@@ -43,7 +43,25 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         currentVoteType = VoteType.None;
         votedPlayers.Clear(); // 투표인원 초기화
     }
-    
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(pauseVote);
+            stream.SendNext(unpauseVote);
+            stream.SendNext(quitVote);
+            stream.SendNext(continueVote);
+        }
+        else
+        {
+            pauseVote = (int)stream.ReceiveNext();
+            unpauseVote = (int)stream.ReceiveNext();
+            quitVote = (int)stream.ReceiveNext();
+            continueVote = (int)stream.ReceiveNext();
+        }
+    }
+
     public void VotePause() // 일시정지 찬성투표
     {
         if (isPaused || isVoting || votedPlayers.Contains(PhotonNetwork.LocalPlayer.ActorNumber)) return;
@@ -171,8 +189,5 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         quitVotingPanel.SetActive(false); // 게임종료 투표 패널 꺼라
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }

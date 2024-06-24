@@ -9744,6 +9744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4760753893781334028}
   - component: {fileID: 39343249573078219}
+  - component: {fileID: 4760753893781334029}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -11126,6 +11127,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 184637637277708136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4760753893781334029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818916030000107337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 39343249573078219}
+  sceneViewId: 7
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &4785745553731351261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11386,7 +11410,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 3803895820167454590}
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
