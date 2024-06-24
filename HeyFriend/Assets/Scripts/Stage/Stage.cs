@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Stage : MonoBehaviour
 {
@@ -23,6 +22,7 @@ public class Stage : MonoBehaviour
     private static Stage instance;
 
     private PhotonView pv;
+    private CameraManager cameraManager;
     void Awake()
     {
         if (instance == null)
@@ -36,6 +36,7 @@ public class Stage : MonoBehaviour
         }
 
         pv = GetComponent<PhotonView>();
+        cameraManager = Camera.main.GetComponent<CameraManager>();
     }
     private void Start()
     {
@@ -53,14 +54,23 @@ public class Stage : MonoBehaviour
         if (stageIndex < stageNames.Count - 1)
         {
             stageIndex++;
-            PhotonNetwork.LoadLevel(stageNames[stageIndex]);
+            if(PhotonNetwork.IsMasterClient){
+                PhotonNetwork.LoadLevel(stageNames[stageIndex]);
+            }else{
+                pv.RPC("Load", RpcTarget.MasterClient,stageIndex);
+            }
+            
         }
         else
         {
             Finish.SetActive(true);
         }
     }
-
+    [PunRPC]
+    private void Load(int index){
+        PhotonNetwork.LoadLevel(stageNames[index]);
+        stageIndex = index;
+    }
     public void PlayerFinish(GameObject player)
     {
         pv.RPC("PlayerFinishRPC",RpcTarget.All,player.name);
@@ -70,8 +80,10 @@ public class Stage : MonoBehaviour
 
     [PunRPC]
     private void PlayerFinishRPC(string name){
-        players.Remove(name);
-        Destroy(GameObject.Find(name));
+        //players.Remove(name);
+        cameraManager.players.Remove(name);
+        Debug.Log("name" + name);
+        GameObject.Find(name).SetActive(false);
     }
     void Update()
     {

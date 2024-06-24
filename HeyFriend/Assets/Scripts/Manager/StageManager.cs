@@ -22,7 +22,7 @@ public class StageManager : MonoBehaviourPunCallbacks
         //string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
         int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
         GameObject obj = PhotonNetwork.Instantiate("Player" + playerNumber, new Vector3(0, 0, 0), Quaternion.identity);
-
+        Debug.Log("실행");
         //pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
 
         //obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
