@@ -2984,6 +2984,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCountText: {fileID: 826495437}
   menu: {fileID: 14257733}
+  keys: []
+  values: []
 --- !u!4 &482039150
 Transform:
   m_ObjectHideFlags: 0
@@ -13857,6 +13859,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoveSquare (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.30098075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Size.y
+      value: 1.4235376
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.00066420436
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2117691
+      objectReference: {fileID: 0}
     - target: {fileID: 6594300204894081341, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.5
@@ -13949,6 +13967,22 @@ PrefabInstance:
     - target: {fileID: 4509232012238284829, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
       propertyPath: m_Name
       value: MoveSquare (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.31368876
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3698571
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0016630068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.18492854
       objectReference: {fileID: 0}
     - target: {fileID: 6594300204894081341, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14722,6 +14756,22 @@ PrefabInstance:
     - target: {fileID: 4509232012238284829, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
       propertyPath: m_Name
       value: MoveSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3247667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3945142
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0063806474
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722421459356277470, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.1972571
       objectReference: {fileID: 0}
     - target: {fileID: 6594300204894081341, guid: ac6b9fc553773bc4c973687182ba734f, type: 3}
       propertyPath: m_LocalPosition.x
