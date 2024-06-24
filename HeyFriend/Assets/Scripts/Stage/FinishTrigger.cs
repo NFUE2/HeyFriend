@@ -19,7 +19,7 @@ public class FinishTrigger : MonoBehaviour
 
     void CheckPlayerCount()
     {
-        if (playerCount >= 1)
+        if (playerCount >= 4)
         {
             stage.NextStage();
         }

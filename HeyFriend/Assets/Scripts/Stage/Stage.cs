@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -49,7 +50,7 @@ public class Stage : MonoBehaviour
         if (stageIndex < stageNames.Count - 1)
         {
             stageIndex++;
-            SceneManager.LoadScene(stageNames[stageIndex]);
+            PhotonNetwork.LoadLevel(stageNames[stageIndex]);
         }
         else
         {
