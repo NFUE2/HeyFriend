@@ -25,13 +25,13 @@ public class GoldObject : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             pv.RPC("PlusStagePoint",RpcTarget.All);
-            source.PlayOneShot(cilp);
-            gameObject.SetActive(false);
         }
     }
     
     [PunRPC]
     private void PlusStagePoint(){
         stage.stagePoint += 1;
+        source.PlayOneShot(cilp);
+        gameObject.SetActive(false);
     }
 }
