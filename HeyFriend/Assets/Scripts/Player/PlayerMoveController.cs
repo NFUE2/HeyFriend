@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEditor;
 
 public class PlayerMoveController : MonoBehaviourPunCallbacks
 {
@@ -23,6 +24,9 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     private bool isMove=false;
     [SerializeField] private float speed;
 
+
+    //추가사항
+    CameraManager cameraManager;
     // Start is called before the first frame update
     private void Awake() {
         playerInputController = GetComponent<PlayerInputController>();
@@ -30,6 +34,9 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         PV = GetComponent<PhotonView>();
+
+        //추가사항
+        cameraManager = Camera.main.GetComponent<CameraManager>();
     }
     void Start()
     {
@@ -41,6 +48,13 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     {
         if (!pv.IsMine) return;
         MoveMent();
+        
+        //추가사항
+        PV.RPC("Pos",RpcTarget.All,gameObject.name,transform.position.x);
+    }
+    [PunRPC]
+    void Pos(string name, float posX){
+        cameraManager.players[name] = posX;
     }
     private void JumpMoveMent()
     {
@@ -63,6 +77,8 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         
         if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
         animator.SetFloat(speedParamToHash, Mathf.Abs(rigidBody2D.velocity.x));
+        
+        //추가사항
 
         // foreach(Rigidbody2D rb in bottomPlayer)
         // {

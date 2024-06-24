@@ -17,6 +17,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public GameObject connectPanel;
 
+    public GameObject audioManager;
     //string isMaster;
     //GameObject obj;
 
@@ -40,6 +41,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         RoomOptions options = new RoomOptions { MaxPlayers = 4 };
 
         PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,"Test",options);
+        Destroy(audioManager);
         //StartCoroutine(CheckChangeScene());
     }
 

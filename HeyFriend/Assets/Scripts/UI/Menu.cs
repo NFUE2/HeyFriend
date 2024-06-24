@@ -1,13 +1,30 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Menu : MonoBehaviour
+public class Menu : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject soundMenu;
     [SerializeField] private GameObject votingPause;
     [SerializeField] private GameObject votingQuit;
     public VotingSystem votingSystem;
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(votingPause.activeInHierarchy);
+            //stream.SendNext(menu.activeInHierarchy);
+            stream.SendNext(votingQuit.activeInHierarchy);
+        }
+        else
+        {
+            votingPause.SetActive((bool)stream.ReceiveNext());
+            //menu.SetActive((bool)stream.ReceiveNext());
+            votingQuit.SetActive((bool)stream.ReceiveNext());
+        }
+    }
 
     public void MenuBtn()
     {
@@ -49,4 +66,6 @@ public class Menu : MonoBehaviour
         soundMenu.SetActive(false);
         menu.SetActive(true);
     }
+
+    
 }

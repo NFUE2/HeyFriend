@@ -23,5 +23,4 @@ public class GoldObject : MonoBehaviour
             source.PlayOneShot(cilp);
             gameObject.SetActive(false);
         }
-    }
-}
+}}

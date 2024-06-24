@@ -15,6 +15,8 @@ public class Stage : MonoBehaviour
     public TMP_Text UIStagePoint;
     public GameObject Finish;
 
+    public List<GameObject> players = new List<GameObject>();
+
     private List<string> stageNames = new List<string>
     { "STAGE 1", "STAGE 2", "STAGE 3", "STAGE 4", "STAGE 5","Game Clear"};
     private static Stage instance;
@@ -34,6 +36,10 @@ public class Stage : MonoBehaviour
     private void Start()
     {
         UpdateUI();
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            players.Add(player);
+        }
     }
 
     public void NextStage()
@@ -51,10 +57,15 @@ public class Stage : MonoBehaviour
         }
     }
 
+    public void PlayerFinish(GameObject player)
+    {
+        players.Remove(player);
+        player.SetActive(false);
+        Debug.Log(players.Count+ "가 다음 스테이지로 이동했습니다");
+    }
     void Update()
     {
         UpdateUI();
-
         if (stagePoint >= totalPoint)
         {
             Finish.SetActive(true);
