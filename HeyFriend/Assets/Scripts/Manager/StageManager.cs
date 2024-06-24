@@ -41,6 +41,8 @@ public class StageManager : MonoBehaviourPunCallbacks
 
     private void SetPlayerText()
     {
+        if(PhotonNetwork.CurrentRoom == null) return;
+
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         playerCountText.text = playerCount.ToString();
     }

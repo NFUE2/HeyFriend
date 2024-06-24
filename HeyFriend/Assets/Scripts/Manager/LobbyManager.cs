@@ -36,6 +36,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         cameraManager = Camera.main.GetComponent<CameraManager>();
         StartCoroutine(CheckChangeScene());
         isFull();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     //참가자라면 모두 사용

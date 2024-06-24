@@ -145,6 +145,8 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (quitVote >= requiredVote) // 게임종료 찬성투표가 과반수보다 많거나 같으면
         {
+            PhotonNetwork.AutomaticallySyncScene = false;
+            //pv.RPC("QuitRPC",RpcTarget.All);
             PhotonNetwork.LeaveRoom();
             PhotonNetwork.LoadLevel("StartScene"); // 스타트씬을 불러와라
         }
@@ -155,6 +157,13 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         }
         OnVotingPanel = false;
     }
+
+    //[PunRPC]
+    //private void QuitRPC()
+    //{
+    //    PhotonNetwork.LeaveRoom();
+    //    PhotonNetwork.LoadLevel("StartScene"); // 스타트씬을 불러와라
+    //}
 
     //--------------------------------------------------------투표가 과반수보다 높으면 일시정지를 한다.
     private IEnumerator PauseGame() // 코루틴 일시정지게임 로직
