@@ -25,12 +25,12 @@ public class StageManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         instance = this;
-        PhotonNetwork.AutomaticallySyncScene = true;
+        // PhotonNetwork.AutomaticallySyncScene = true;
 
         //string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
         int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
         GameObject obj = PhotonNetwork.Instantiate("Player" + playerNumber, new Vector3(0, 0, 0), Quaternion.identity);
-        Debug.Log("실행");
+        Debug.Log("실행"+gameObject.GetInstanceID());
         PV = GetComponent<PhotonView>();
         cameraManager = Camera.main.GetComponent<CameraManager>();
         //pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);

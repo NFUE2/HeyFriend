@@ -67,7 +67,9 @@ public class Stage : MonoBehaviour
         }
     }
     [PunRPC]
-    private void Load(int index){
+    private void Load(int index)
+    {
+        Debug.Log("StageLoad");
         PhotonNetwork.LoadLevel(stageNames[index]);
         stageIndex = index;
     }
