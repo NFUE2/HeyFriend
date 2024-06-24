@@ -29,8 +29,8 @@
 
 | **시작 화면** | **로비 화면** |
 |:-------------:|:------------------:|
-| ![Start]() | ![Lobby]() |
+| ![Start](https://github.com/NFUE2/HeyFriend/blob/DevMain/HeyFriend/ReadMe/start.PNG) | ![Lobby](https://github.com/NFUE2/HeyFriend/blob/DevMain/HeyFriend/ReadMe/Lobby.PNG) |
 | **메뉴 화면** | **투표 화면** |
-| ![Menu]() | ![Voting]() |
+| ![Menu](https://github.com/NFUE2/HeyFriend/blob/DevMain/HeyFriend/ReadMe/menu.PNG) | ![Voting](https://github.com/NFUE2/HeyFriend/blob/DevMain/HeyFriend/ReadMe/voting.PNG) |
 | **게임 화면** | **시간 초과** |
-| ![Play]() | ![TimeOver]() |
+| ![Play](https://github.com/NFUE2/HeyFriend/blob/DevMain/HeyFriend/ReadMe/play.PNG) | ![TimeOver](https://github.com/NFUE2/HeyFriend/blob/DevMain/HeyFriend/ReadMe/gameover.PNG) |
