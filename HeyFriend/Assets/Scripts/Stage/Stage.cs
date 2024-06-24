@@ -62,11 +62,6 @@ public class Stage : MonoBehaviour
         players.Remove(player);
         player.SetActive(false);
         Debug.Log(players.Count+ "가 다음 스테이지로 이동했습니다");
-
-        if (players.Count == 0)
-        {
-            NextStage();
-        }
     }
     void Update()
     {
