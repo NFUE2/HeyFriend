@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +10,11 @@ public class GoldObject : MonoBehaviour
     public AudioSource source;
 
     public Stage stage;
+
+    private PhotonView pv;
     private void Start()
     {
+        pv = GetComponent<PhotonView>();
         GameObject objectManager = GameObject.Find("ObjectManager");
         stage = objectManager.GetComponent<Stage>();
         
@@ -19,8 +23,14 @@ public class GoldObject : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            stage.stagePoint += 1;
+            pv.RPC("PlusStagePoint",RpcTarget.All);
             source.PlayOneShot(cilp);
             gameObject.SetActive(false);
         }
-}}
+    }
+    
+    [PunRPC]
+    private void PlusStagePoint(){
+        stage.stagePoint += 1;
+    }
+}
