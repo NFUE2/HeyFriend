@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3095339960172007214}
   - component: {fileID: 9005200373121983843}
   - component: {fileID: 2212749740539846329}
+  - component: {fileID: 444475144772289220}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Coin
@@ -141,9 +142,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.4606285, y: 0.47043586}
-  m_EdgeRadius: 0
---- !u!114 &7425853984197719749
+  m_Radius: 0.5
+--- !u!114 &444475144772289220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
