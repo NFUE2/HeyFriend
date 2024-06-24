@@ -9172,7 +9172,7 @@ MonoBehaviour:
   UIStage: {fileID: 82171000}
   UITotalPoint: {fileID: 2118357668}
   UIStagePoint: {fileID: 1217795016}
-  Finish: {fileID: 1858865934}
+  Finish: {fileID: 0}
   players: []
 --- !u!114 &1042092538
 MonoBehaviour:
@@ -12098,6 +12098,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Over (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 702000668367241130, guid: 907c87243bec6a3478cead1c4445c13b, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3653899095656618478, guid: 907c87243bec6a3478cead1c4445c13b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -12590,11 +12594,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782944303}
   m_CullTransparentMesh: 1
---- !u!1 &1858865934 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3095928981352600312, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
-  m_PrefabInstance: {fileID: 7825820475930763779}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1901874049
 GameObject:
   m_ObjectHideFlags: 0
@@ -13204,6 +13203,14 @@ PrefabInstance:
     - target: {fileID: -5912009193415389094, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
       propertyPath: sceneViewId
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051190176071165898, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051190176071165898, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 3577656757268400912, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
       propertyPath: m_LocalPosition.x
