@@ -23,11 +23,6 @@ public class GameOver : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void Update()
-    {
-        Debug.Log(collision);
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
