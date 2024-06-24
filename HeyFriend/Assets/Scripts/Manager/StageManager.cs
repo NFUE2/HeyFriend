@@ -14,6 +14,14 @@ public class StageManager : MonoBehaviourPunCallbacks
     public static StageManager instance;
     public GameObject menu;
 
+    private PhotonView PV;
+
+    private CameraManager cameraManager;
+
+    string key;
+
+    public string[] keys;
+    public float[] values;
     private void Awake()
     {
         instance = this;
@@ -23,6 +31,8 @@ public class StageManager : MonoBehaviourPunCallbacks
         int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
         GameObject obj = PhotonNetwork.Instantiate("Player" + playerNumber, new Vector3(0, 0, 0), Quaternion.identity);
         Debug.Log("실행");
+        PV = GetComponent<PhotonView>();
+        cameraManager = Camera.main.GetComponent<CameraManager>();
         //pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
 
         //obj.GetComponent<SpriteRenderer>().color = color[PhotonNetwork.LocalPlayer.ActorNumber - 1];
@@ -48,5 +58,52 @@ public class StageManager : MonoBehaviourPunCallbacks
     public void OpenMenu()
     {
         menu.SetActive(true);
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        key = $"Player{newPlayer.ActorNumber}(Clone)";
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (cameraManager.players.ContainsKey(key)) return;
+            cameraManager.players.Add(key, 0);
+            ChangeToArray(cameraManager.players);
+            PV.RPC("SendDictionary", RpcTarget.OthersBuffered, keys, values);
+        }
+    }
+
+    [PunRPC]
+    private void SendDictionary(string[] keys, float[] values)
+    {
+        Debug.Log("받았다.");
+        ChangeToDictioniary(keys, values);
+    }
+
+    private void ChangeToArray(Dictionary<string, float> players)
+    {
+        keys = new string[players.Count];
+        values = new float[players.Count];
+        int i = 0;
+        foreach (string key in players.Keys)
+        {
+            keys[i] = key;
+            i++;
+        }
+        i = 0;
+        foreach (float value in players.Values)
+        {
+            values[i] = value;
+            i++;
+        }
+    }
+
+    private void ChangeToDictioniary(string[] keys, float[] values)
+    {
+        for (int i = 0; i < keys.Length; i++)
+        {
+            if (cameraManager.players.ContainsKey(keys[i])) return;
+            cameraManager.players.Add(keys[i], values[i]);
+        }
     }
 }
