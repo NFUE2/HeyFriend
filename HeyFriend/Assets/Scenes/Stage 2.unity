@@ -3302,7 +3302,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 710002207}
-  sceneViewId: 8
+  sceneViewId: 10
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &718288706
@@ -13205,7 +13205,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 8
+  sceneViewId: 11
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &7631364738292105795
@@ -13290,6 +13290,10 @@ PrefabInstance:
       propertyPath: stage
       value: 
       objectReference: {fileID: 4092726315592818067}
+    - target: {fileID: 5860508223249302894, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
+      propertyPath: sceneViewId
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7938896090017115183, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
       propertyPath: m_Name
       value: Flag
