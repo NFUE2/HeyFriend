@@ -146,9 +146,11 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         if (quitVote >= requiredVote) // 게임종료 찬성투표가 과반수보다 많거나 같으면
         {
             PhotonNetwork.AutomaticallySyncScene = false;
+            StartCoroutine(ReturnStartScene());
             //pv.RPC("QuitRPC",RpcTarget.All);
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LoadLevel("StartScene"); // 스타트씬을 불러와라
+            //PhotonNetwork.LeaveRoom();
+            //PhotonNetwork.Disconnect();
+            //PhotonNetwork.LoadLevel("StartScene"); // 스타트씬을 불러와라
         }
         else if (continueVote >= requiredVote) // 게임종료 반대투표가 과반수보다 많거나 같으면
         {
@@ -198,5 +200,13 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         quitVotingPanel.SetActive(false); // 게임종료 투표 패널 꺼라
     }
 
-    
+    IEnumerator ReturnStartScene()
+    {
+        PhotonNetwork.LeaveRoom();
+
+        while(PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer)
+            yield return null;
+
+        PhotonNetwork.LoadLevel("StartScene");
+    }
 }
