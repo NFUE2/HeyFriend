@@ -46,6 +46,7 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+
         if (stream.IsWriting)
         {
             stream.SendNext(pauseVote);
@@ -53,8 +54,9 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(quitVote);
             stream.SendNext(continueVote);
         }
-        else
+        else if(stream.IsReading)
         {
+            Debug.Log(2);
             pauseVote = (int)stream.ReceiveNext();
             unpauseVote = (int)stream.ReceiveNext();
             quitVote = (int)stream.ReceiveNext();

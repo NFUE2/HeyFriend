@@ -56,6 +56,9 @@ MonoBehaviour:
   - PlayerFinishRPC
   - PlusPlayerCount
   - PlusStagePoint
+  - VotingPause
+  - VotingPauseRPC
+  - VotingQuitRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
