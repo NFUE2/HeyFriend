@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalPoint: 1
   stagePoint: 0
-  stageIndex: 3
+  stageIndex: 0
   UIStage: {fileID: 0}
   UITotalPoint: {fileID: 0}
   UIStagePoint: {fileID: 0}
