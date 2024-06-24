@@ -11,7 +11,7 @@ public class Menu : MonoBehaviourPunCallbacks , IPunObservable
     [SerializeField] private GameObject votingPause;
     [SerializeField] private GameObject votingQuit;
     public VotingSystem votingSystem;
-    PhotonView pv;
+    PhotonView PV;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -34,7 +34,7 @@ public class Menu : MonoBehaviourPunCallbacks , IPunObservable
 
     private void Awake()
     {
-        pv = GetComponent<PhotonView>();
+        PV = GetComponent<PhotonView>();
     }
 
     public void MenuBtn()
@@ -54,7 +54,7 @@ public class Menu : MonoBehaviourPunCallbacks , IPunObservable
 
     public void VotingPause()
     {
-        pv.RPC("VotingPauseRPC", RpcTarget.All);
+        PV.RPC("VotingPauseRPC", RpcTarget.All);
         //votingSystem.OnVotingPanel = true;
         //Debug.Log("일시정지 투표 패널 키기");
 
@@ -74,7 +74,7 @@ public class Menu : MonoBehaviourPunCallbacks , IPunObservable
 
     public void VotingQuit()
     {
-        pv.RPC("VotingQuitRPC", RpcTarget.All);
+        PV.RPC("VotingQuitRPC", RpcTarget.All);
 
         //votingSystem.OnVotingPanel = true;
         //Debug.Log("게임종료 투표 패널 켜ㅣ");

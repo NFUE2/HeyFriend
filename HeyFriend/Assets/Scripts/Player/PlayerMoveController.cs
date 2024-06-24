@@ -21,7 +21,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     public float jumpPower;
     public Rigidbody2D bottomPlayer;
 
-    private bool isMove=false;
+    
     [SerializeField] private float speed;
 
 

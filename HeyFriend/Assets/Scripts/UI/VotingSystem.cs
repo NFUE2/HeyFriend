@@ -12,7 +12,6 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
     private int quitVote = 0; // 게임종료 찬성투표값
     private int continueVote = 0; // 게임종료 반대투표값
 
-    private int totalPlayer = 4; // 최대 인원
     private int requiredVote = 2; // 과반 인원
 
     public GameObject pauseMenu; // 일시정지 이미지

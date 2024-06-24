@@ -55,11 +55,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (isFool && PhotonNetwork.IsMasterClient)
             startBtn.SetActive(true);
 
-        if(PhotonNetwork.IsMasterClient){
-            cameraManager.players.Add(key, 0);
-            ChangeToArray(cameraManager.players);
-            photonView.RPC("SendDictionary",RpcTarget.OthersBuffered,keys,values);
-        }
+        // if(PhotonNetwork.IsMasterClient){
+        //     cameraManager.players.Add(key, 0);
+        //     ChangeToArray(cameraManager.players);
+        //     photonView.RPC("SendDictionary",RpcTarget.OthersBuffered,keys,values);
+        // }
         Debug.Log("OnPlayerEnteredRoom"+ key);
     }
     [PunRPC]

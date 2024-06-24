@@ -59,6 +59,7 @@ MonoBehaviour:
   - VotingPause
   - VotingPauseRPC
   - VotingQuitRPC
+  - Load
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

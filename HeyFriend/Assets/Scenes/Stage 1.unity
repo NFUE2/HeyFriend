@@ -7230,11 +7230,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1051190176071165898, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.58
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 1051190176071165898, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.54
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1051190176071165898, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7400,11 +7400,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657472040326501790, guid: 619791fda5aa86d40b0d3cc08eb949fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.56
+      value: -4.9
       objectReference: {fileID: 0}
     - target: {fileID: 3657472040326501790, guid: 619791fda5aa86d40b0d3cc08eb949fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.11
+      value: -1.9
       objectReference: {fileID: 0}
     - target: {fileID: 3657472040326501790, guid: 619791fda5aa86d40b0d3cc08eb949fd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7486,6 +7486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCountText: {fileID: 7972312748009670624}
   menu: {fileID: 8813199871168455368}
+  keys: []
+  values: []
 --- !u!4 &1306799346
 Transform:
   m_ObjectHideFlags: 0
