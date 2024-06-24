@@ -7,10 +7,13 @@ public class FinishTrigger : MonoBehaviour
     public Stage stage;  
     private int playerCount = 0;
 
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))  
         {
+            Debug.Log("µµÂø");
+            stage.PlayerFinish(other.gameObject);
             playerCount++;
             CheckPlayerCount();
         }
@@ -26,9 +29,10 @@ public class FinishTrigger : MonoBehaviour
 
     void CheckPlayerCount()
     {
-        if (playerCount >= 4)
+        if (playerCount >= 1)
         {
             stage.NextStage();
         }
     }
+
 }

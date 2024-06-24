@@ -5529,7 +5529,6 @@ GameObject:
   - component: {fileID: 8925468772357401355}
   - component: {fileID: 2321341586734002203}
   - component: {fileID: -6551898849365066610}
-  - component: {fileID: 2608152750375151396}
   m_Layer: 0
   m_Name: Player4
   m_TagString: Player
@@ -5780,7 +5779,7 @@ MonoBehaviour:
   gravityscale: 0.5
   velocty_y: 0
   jumpPower: 10
-  topPlayer: []
+  bottomPlayer: {fileID: 0}
   speed: 5
 --- !u!114 &1883403828670976646
 MonoBehaviour:
@@ -5908,19 +5907,6 @@ MonoBehaviour:
   votingPause: {fileID: 8397602088311291782}
   votingQuit: {fileID: 1383365788775416172}
   votingSystem: {fileID: 3803895820364122457}
---- !u!114 &2608152750375151396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7206043371295361826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b44651a960bc9a4e952dc82080b87ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stage: {fileID: 0}
 --- !u!1 &7220641762680517419
 GameObject:
   m_ObjectHideFlags: 0
