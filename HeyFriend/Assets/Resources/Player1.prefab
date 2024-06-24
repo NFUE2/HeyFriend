@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6203459405204784720}
   - component: {fileID: 7334044864177540926}
   - component: {fileID: 4505522566957379169}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 3569035899535443488}
   - component: {fileID: 1942234177732126940}
   - component: {fileID: 3875640505262474846}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 7451347486721456468}
   - component: {fileID: 3380288583944444163}
   - component: {fileID: 2239018539476180816}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 3266400772344927591}
   - component: {fileID: 5810675400291102593}
   - component: {fileID: 729403761283904914}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 8486387116158887675}
   - component: {fileID: 1594496153447189845}
   - component: {fileID: 7876649174748275741}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Pause(vote)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 6148511771073271353}
   - component: {fileID: 4002985114814225120}
   - component: {fileID: 1946411396408608541}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Agree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   - component: {fileID: 3385278589621283633}
   - component: {fileID: 3139762893160671164}
   - component: {fileID: 3183935643348107022}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,7 +792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4508008927867658781}
   - component: {fileID: 7996969070346615557}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BackGroundMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 2023698708969258493}
   - component: {fileID: 5779915814169720078}
   - component: {fileID: 8638129720133369506}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,7 +998,7 @@ GameObject:
   - component: {fileID: 6971928926954690471}
   - component: {fileID: 7829949835937910423}
   - component: {fileID: 9132722142780688569}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Voting(Pause)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1092,7 +1092,7 @@ GameObject:
   - component: {fileID: 232233077281401737}
   - component: {fileID: 7554090772196591221}
   - component: {fileID: 9102286124168287521}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,7 +1167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1063281651233806428}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1203,7 +1203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7159983520651697904}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1241,7 +1241,7 @@ GameObject:
   - component: {fileID: 7258506791154760872}
   - component: {fileID: 7161209890313451092}
   - component: {fileID: 2669087350651520952}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1317,7 +1317,7 @@ GameObject:
   - component: {fileID: 5465255187598779694}
   - component: {fileID: 5755180381442135634}
   - component: {fileID: 437586188646669672}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 1626409165087022830}
   - component: {fileID: 5499868255561953974}
   - component: {fileID: 8319943731573556432}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1550,7 +1550,7 @@ GameObject:
   - component: {fileID: 2684805053752020582}
   - component: {fileID: 6097325876235074334}
   - component: {fileID: 7170746455183907520}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1685,7 +1685,7 @@ GameObject:
   - component: {fileID: 6393459330653733672}
   - component: {fileID: 8938640780058883091}
   - component: {fileID: 4540326127609148101}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SoundMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1829,7 +1829,7 @@ GameObject:
   - component: {fileID: 1564994523899969552}
   - component: {fileID: 2936490184737124070}
   - component: {fileID: 7052983926794918511}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1963,7 +1963,7 @@ GameObject:
   - component: {fileID: 1185427822125591565}
   - component: {fileID: 8548325855209120365}
   - component: {fileID: 224228711045006329}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2095,7 +2095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7447607160080899212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2130,7 +2130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7732512771120600937}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2168,7 +2168,7 @@ GameObject:
   - component: {fileID: 4552127808625524648}
   - component: {fileID: 8423652261193702749}
   - component: {fileID: 4570376997122471315}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2303,7 +2303,7 @@ GameObject:
   - component: {fileID: 5580034652129149120}
   - component: {fileID: 5892512628433472189}
   - component: {fileID: 5469478937026799329}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2411,7 +2411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7614203154389305550}
   - component: {fileID: 5104726030795915352}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ClickSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2540,7 +2540,7 @@ GameObject:
   - component: {fileID: 7129254782795805362}
   - component: {fileID: 9094887582979193383}
   - component: {fileID: 332463785820196302}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2674,7 +2674,7 @@ GameObject:
   - component: {fileID: 654568127357599000}
   - component: {fileID: 4103023959582209428}
   - component: {fileID: 5554647937993047961}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SoundMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2765,7 +2765,7 @@ GameObject:
   - component: {fileID: 1754001932113688122}
   - component: {fileID: 2242518078718066288}
   - component: {fileID: 2380253155253902388}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3167,7 +3167,7 @@ GameObject:
   - component: {fileID: 8051938195917470703}
   - component: {fileID: 4404322785396319341}
   - component: {fileID: 7335702987835664469}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Voting(Quit)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3261,7 +3261,7 @@ GameObject:
   - component: {fileID: 6833601088790712858}
   - component: {fileID: 1774312145184097745}
   - component: {fileID: 4532413336648015662}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3395,7 +3395,7 @@ GameObject:
   - component: {fileID: 1564695091779332924}
   - component: {fileID: 1046825210061752006}
   - component: {fileID: 5871762174242760078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VotingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3467,7 +3467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7560131023749482327}
   - component: {fileID: 2462501968198196991}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SoundMenuManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3515,7 +3515,7 @@ GameObject:
   - component: {fileID: 2497875146788505512}
   - component: {fileID: 5580917661996500761}
   - component: {fileID: 2286013469326475067}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GoToStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3671,7 +3671,7 @@ GameObject:
   - component: {fileID: 2080760503274360682}
   - component: {fileID: 8924053063015329578}
   - component: {fileID: 3997155594425665999}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3803,7 +3803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8310791145223011750}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PlayerCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3843,7 +3843,7 @@ GameObject:
   - component: {fileID: 1218406828102321420}
   - component: {fileID: 2040281576784901978}
   - component: {fileID: 1657506372390427082}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3917,7 +3917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8796469088411591098}
   - component: {fileID: 8202533990333112346}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4020,7 +4020,7 @@ GameObject:
   - component: {fileID: 5157182633771307101}
   - component: {fileID: 1732854622286697911}
   - component: {fileID: 6404411519574489953}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4095,7 +4095,7 @@ GameObject:
   - component: {fileID: 3382030353389934545}
   - component: {fileID: 224878959709920274}
   - component: {fileID: 4275914544463678203}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4228,7 +4228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7372709375278040102}
   - component: {fileID: 3799767356527548742}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameOverSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4358,7 +4358,7 @@ GameObject:
   - component: {fileID: 7971042232547290857}
   - component: {fileID: 8209752480209351810}
   - component: {fileID: 3197895535090577160}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4450,7 +4450,7 @@ GameObject:
   - component: {fileID: 7909513579413086716}
   - component: {fileID: 8660676913270334359}
   - component: {fileID: 9046096327816805026}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4527,7 +4527,7 @@ GameObject:
   - component: {fileID: 343091259230178407}
   - component: {fileID: 6372756360666992718}
   - component: {fileID: 6793312536054782361}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4602,7 +4602,7 @@ GameObject:
   - component: {fileID: 7478771881337785033}
   - component: {fileID: 1131804621860110973}
   - component: {fileID: 3532085340994060236}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4736,7 +4736,7 @@ GameObject:
   - component: {fileID: 5807989331742201917}
   - component: {fileID: 9051381244091361797}
   - component: {fileID: 312053747744293629}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4870,7 +4870,7 @@ GameObject:
   - component: {fileID: 2653996654395643473}
   - component: {fileID: 4053835916990951851}
   - component: {fileID: 5962532515977404131}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4945,7 +4945,7 @@ GameObject:
   - component: {fileID: 7667569973588654854}
   - component: {fileID: 6667793573336001565}
   - component: {fileID: 4712653200143195644}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5019,7 +5019,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5865186527167526561}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5056,7 +5056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079998080766062636}
   - component: {fileID: 7387683503064897279}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5159,7 +5159,7 @@ GameObject:
   - component: {fileID: 1566184378908435544}
   - component: {fileID: 645561866889350703}
   - component: {fileID: 581336920454291239}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5233,7 +5233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4180257047080932282}
   - component: {fileID: 3887634370514396}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TimerSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5360,7 +5360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2732777796065887358}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5397,7 +5397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2629186889569800799}
   - component: {fileID: 7269495951652841735}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MenuManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5448,7 +5448,7 @@ GameObject:
   - component: {fileID: 8721926795863261211}
   - component: {fileID: 5643003760165937526}
   - component: {fileID: 3734684437197678860}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Disagree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5591,7 +5591,7 @@ GameObject:
   - component: {fileID: 543425186333519845}
   - component: {fileID: 8990593079348149038}
   - component: {fileID: 3236705577850819372}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5666,7 +5666,7 @@ GameObject:
   - component: {fileID: 6294697579033538576}
   - component: {fileID: 7718194891511805071}
   - component: {fileID: 7065427551440376333}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5801,7 +5801,7 @@ GameObject:
   - component: {fileID: 7764674332135875303}
   - component: {fileID: 9050526122726965850}
   - component: {fileID: 7601717158997681385}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Disagree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5945,7 +5945,7 @@ GameObject:
   - component: {fileID: 5261516101668281081}
   - component: {fileID: 4701472986638280421}
   - component: {fileID: 8434028642853770327}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Quit(vote)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6089,7 +6089,7 @@ GameObject:
   - component: {fileID: 8559835349155984313}
   - component: {fileID: 3824130502338617047}
   - component: {fileID: 7309192020590812037}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6164,7 +6164,7 @@ GameObject:
   - component: {fileID: 3386096002887535422}
   - component: {fileID: 1407511798611421653}
   - component: {fileID: 5005990723587361568}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6296,7 +6296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6449517295554350888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6333,7 +6333,7 @@ GameObject:
   - component: {fileID: 4727288527652557252}
   - component: {fileID: 8052416979189247810}
   - component: {fileID: 3420043713354647352}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6467,7 +6467,7 @@ GameObject:
   - component: {fileID: 6449447916781862447}
   - component: {fileID: 2871167899502142210}
   - component: {fileID: 4994799434395341340}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6542,7 +6542,7 @@ GameObject:
   - component: {fileID: 5825701554780165473}
   - component: {fileID: 2422390683675153354}
   - component: {fileID: 1659701881332898380}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6677,7 +6677,7 @@ GameObject:
   - component: {fileID: 5293167502488650283}
   - component: {fileID: 2814015269855979994}
   - component: {fileID: 7602261321298199653}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Agree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6820,7 +6820,7 @@ GameObject:
   - component: {fileID: 5285991725575053995}
   - component: {fileID: 1099040500195011060}
   - component: {fileID: 1928030310742314963}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6953,7 +6953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8205505601667102564}
   - component: {fileID: 4767941109496177046}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7057,7 +7057,7 @@ GameObject:
   - component: {fileID: 4195428862568324591}
   - component: {fileID: 75331027529707410}
   - component: {fileID: 6048888966010894019}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CloseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7204,7 +7204,7 @@ GameObject:
   - component: {fileID: 2449353462062250641}
   - component: {fileID: 3348760924612536622}
   - component: {fileID: 5350322912323109628}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GameExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7360,7 +7360,7 @@ GameObject:
   - component: {fileID: 4285328549514548952}
   - component: {fileID: 6965121513572546363}
   - component: {fileID: 6789032340252860601}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7435,7 +7435,7 @@ GameObject:
   - component: {fileID: 8167996689941897161}
   - component: {fileID: 4673046767607942072}
   - component: {fileID: 2241972869954052495}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: StageLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7512,7 +7512,7 @@ GameObject:
   - component: {fileID: 3521176860060212545}
   - component: {fileID: 6510491170093778193}
   - component: {fileID: 9195500314575891639}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CloseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7655,7 +7655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5904715892999268527}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12296,9 +12296,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1051190176071165898, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 29.8
+    - target: {fileID: -5912009193415389094, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
+      propertyPath: sceneViewId
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3095928981352600312, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
       propertyPath: m_IsActive
@@ -13559,6 +13559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1568869062}
   - component: {fileID: 1568869063}
+  - component: {fileID: 1568869064}
   m_Layer: 0
   m_Name: ObjectManager
   m_TagString: Untagged
@@ -13599,8 +13600,30 @@ MonoBehaviour:
   UIStage: {fileID: 1300751154}
   UITotalPoint: {fileID: 470630579}
   UIStagePoint: {fileID: 2031087740}
-  Finish: {fileID: 0}
+  Finish: {fileID: 1652961602}
   players: []
+--- !u!114 &1568869064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568869061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 7
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1617230123
 GameObject:
   m_ObjectHideFlags: 0
@@ -13751,6 +13774,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630126839}
   m_CullTransparentMesh: 1
+--- !u!1 &1652961602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3095928981352600312, guid: 2e2ae730c6e3d764f91fc4377854f689, type: 3}
+  m_PrefabInstance: {fileID: 1317740334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1662017582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13762,10 +13790,6 @@ PrefabInstance:
     - target: {fileID: 645832000304010404, guid: 907c87243bec6a3478cead1c4445c13b, type: 3}
       propertyPath: m_Name
       value: Game Over
-      objectReference: {fileID: 0}
-    - target: {fileID: 702000668367241130, guid: 907c87243bec6a3478cead1c4445c13b, type: 3}
-      propertyPath: sceneViewId
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3653899095656618478, guid: 907c87243bec6a3478cead1c4445c13b, type: 3}
       propertyPath: m_LocalPosition.x
