@@ -72,7 +72,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         if(bottomPlayer==null){
             rigidBody2D.velocity = moveDirection;
         }else{
-            rigidBody2D.velocity = moveDirection + bottomPlayer.velocity;;
+            rigidBody2D.velocity = new Vector2(moveDirection.x + bottomPlayer.velocity.x , moveDirection.y);
         }
         
         if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
