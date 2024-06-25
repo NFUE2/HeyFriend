@@ -30,6 +30,7 @@ public class TimeCount : MonoBehaviour
 
     private void Update()
     {
+        if(GameOver.activeInHierarchy)return;
         seconds -= Time.deltaTime;
 
         if (seconds <= 0)
@@ -41,6 +42,7 @@ public class TimeCount : MonoBehaviour
 
         if (seconds == 0)
         {
+
             GameOver.SetActive(true);
             
             Time.timeScale = 0.0f;

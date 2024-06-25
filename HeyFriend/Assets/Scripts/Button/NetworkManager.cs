@@ -35,11 +35,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.PhotonServerSettings.DevRegion = "";
 
 
-        //¼­¹öÁ¢¼Ó
-        if (PhotonNetwork.NetworkClientState == ClientState.PeerCreated){
+
             PhotonNetwork.ConnectUsingSettings();
-        }else{
-        }
             
 
         StartCoroutine(NetworkCheck());
@@ -60,7 +57,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         RoomOptions options = new RoomOptions { MaxPlayers = 4 };
         PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,$"Test{roomCount}",options);
-        Debug.Log("°ÔÀÓ½ÃÀÛ ¹öÆ° ´©¸§");
         Destroy(audioManager);
         //StartCoroutine(CheckChangeScene());
     }
