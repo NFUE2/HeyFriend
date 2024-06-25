@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using Unity.VisualScripting;
+using UnityEditor;
 
 public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -205,10 +206,10 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
     {
         GameObject[] players = StageManager.instance.players;
 
-        foreach (var p in players)
+        for(int i = players.Length - 1; i >= 0; i--)
         {
-            if (p == null) continue;
-            PhotonNetwork.Destroy(p);
+            if (players[i] == null) continue;
+            PhotonNetwork.Destroy(players[i]);
         }
 
         Camera.main.GetComponent<CameraManager>().players.Clear();
