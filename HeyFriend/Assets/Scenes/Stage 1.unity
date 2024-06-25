@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2716604487087844585, guid: 7fd0efc86c01ead42ae15c501b3f832b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.04
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 2716604487087844585, guid: 7fd0efc86c01ead42ae15c501b3f832b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7486,6 +7486,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCountText: {fileID: 7972312748009670624}
   menu: {fileID: 8813199871168455368}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  keys: []
+  values: []
 --- !u!4 &1306799346
 Transform:
   m_ObjectHideFlags: 0
