@@ -21,6 +21,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     //string isMaster;
     //GameObject obj;
 
+    int roomCount;
+
     public void Awake()
     {
         PhotonNetwork.SendRate = 30;
@@ -36,11 +38,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         StartCoroutine(NetworkCheck());
 
     }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        base.OnRoomListUpdate(roomList);
+        roomCount = roomList.Count;
+
+    }
+
     public void OnGameStart()
     {
         RoomOptions options = new RoomOptions { MaxPlayers = 4 };
 
-        PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,"Test",options);
+       
+
+        PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,$"Test{roomCount}",options);
         Destroy(audioManager);
         //StartCoroutine(CheckChangeScene());
     }
