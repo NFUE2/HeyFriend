@@ -202,27 +202,26 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator ReturnStartScene()
     {
-        GameObject[] players = StageManager.instance.players;
+        //GameObject[] players = StageManager.instance.players;
 
-        for(int i = players.Length - 1; i >= 0; i--)
-        {
-            if (players[i] == null) continue;
-            PhotonNetwork.RemoveRPCs(players[i].GetComponent<PhotonView>());
-            PhotonNetwork.Destroy(players[i]);
-        }
+        //for(int i = players.Length - 1; i >= 0; i--)
+        //{
+        //    if (players[i] == null) continue;
+        //    PhotonNetwork.RemoveRPCs(players[i].GetComponent<PhotonView>());
+        //    PhotonNetwork.Destroy(players[i]);
+        //}
 
         Camera.main.GetComponent<CameraManager>().players.Clear();
 
 
+        //PhotonNetwork.LeaveRoom();
+        //PhotonNetwork.LeaveLobby();
+        PhotonNetwork.Disconnect();
 
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LeaveLobby();
+        while (PhotonNetwork.NetworkClientState != ClientState.Disconnected)
+            yield return null;
 
-            while (PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer)
-                yield return null;
-            PhotonNetwork.LoadLevel("StartScene");
-            
-
+        PhotonNetwork.LoadLevel("StartScene");
     }
 
     public override void OnLeftRoom()
