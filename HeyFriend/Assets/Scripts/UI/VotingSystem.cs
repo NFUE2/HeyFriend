@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine.SceneManagement;
 
 
 public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
@@ -13,7 +12,7 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
     private int quitVote = 0; // 게임종료 찬성투표값
     private int continueVote = 0; // 게임종료 반대투표값
 
-    private int requiredVote = 1; // 과반 인원
+    private int requiredVote = 2; // 과반 인원
 
     public GameObject pauseMenu; // 일시정지 이미지
     public GameObject pausevotingPanel; // 일시정지 투표 패널
