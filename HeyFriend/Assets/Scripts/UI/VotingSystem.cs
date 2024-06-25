@@ -205,8 +205,11 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
     {
         GameObject[] players = StageManager.instance.players;
 
-        foreach(var p in players)
+        foreach (var p in players)
+        {
+            if (p == null) continue;
             PhotonNetwork.Destroy(p);
+        }
 
         Camera.main.GetComponent<CameraManager>().players.Clear();
 
