@@ -18,6 +18,8 @@ public class StageManager : MonoBehaviourPunCallbacks
 
     private CameraManager cameraManager;
 
+    public GameObject[] players = new GameObject[4];
+
     string key;
 
     public string[] keys;
@@ -25,12 +27,15 @@ public class StageManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         instance = this;
-        PhotonNetwork.AutomaticallySyncScene = true;
+        // PhotonNetwork.AutomaticallySyncScene = true;
 
         //string player = PhotonNetwork.IsMasterClient ? "MasterPlayer" : "Player";
         int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+
         GameObject obj = PhotonNetwork.Instantiate("Player" + playerNumber, new Vector3(0, 0, 0), Quaternion.identity);
-        Debug.Log("실행");
+        players[playerNumber - 1] = obj;
+
+        Debug.Log("실행"+gameObject.GetInstanceID());
         PV = GetComponent<PhotonView>();
         cameraManager = Camera.main.GetComponent<CameraManager>();
         //pv.RPC("SpawnCharacter", RpcTarget.AllBuffered, obj);
@@ -51,6 +56,8 @@ public class StageManager : MonoBehaviourPunCallbacks
 
     private void SetPlayerText()
     {
+        if(PhotonNetwork.CurrentRoom == null) return;
+
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         playerCountText.text = playerCount.ToString();
     }

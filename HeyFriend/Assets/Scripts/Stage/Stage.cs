@@ -19,22 +19,11 @@ public class Stage : MonoBehaviour
 
     private List<string> stageNames = new List<string>
     { "STAGE 1", "STAGE 2", "STAGE 3", "STAGE 4", "STAGE 5","Game Clear"};
-    private static Stage instance;
 
     private PhotonView pv;
     private CameraManager cameraManager;
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         pv = GetComponent<PhotonView>();
         cameraManager = Camera.main.GetComponent<CameraManager>();
     }
@@ -67,7 +56,9 @@ public class Stage : MonoBehaviour
         }
     }
     [PunRPC]
-    private void Load(int index){
+    private void Load(int index)
+    {
+        Debug.Log("StageLoad");
         PhotonNetwork.LoadLevel(stageNames[index]);
         stageIndex = index;
     }

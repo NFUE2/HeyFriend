@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
+
 
 public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -26,10 +27,10 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
 
     private enum VoteType { None, Pause, Quit } // 투표 타입값
     private VoteType currentVoteType = VoteType.None; // 현재 진행 중인 투표 종류
-    private PhotonView pv;
+    private PhotonView PV;
 
     void Awake(){
-        pv = GetComponent<PhotonView>();
+        PV = GetComponent<PhotonView>();
     }
 
     private void ResetVote() // 투표 리셋 함수
@@ -68,7 +69,7 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         // 투표가 진행 중이거나 일시정지 상태거나 서버에 포함된 투표 인원이면 리턴해라
         StartVoting(VoteType.Pause); // 투표를 시작해라 (투표종류 일시정지)
         votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber); // 서버에서 투표 인원을 더해라
-        pv.RPC("RPC_VotePause", RpcTarget.All); // RPC_VotePause 를 RPC에 포함된 모두에게 발생시켜라
+        PV.RPC("RPC_VotePause", RpcTarget.All); // RPC_VotePause 를 RPC에 포함된 모두에게 발생시켜라
     }
 
     public void VoteUnpause() // 일시정지 반대투표
@@ -77,7 +78,7 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         // 투표가 진행 중이거나 일시정지 상태거나 서버에 포함된 투표 인원이면 리턴해라
         StartVoting(VoteType.Pause); // 투표를 시작해라 (투표종류 일시정지)
         votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber); // 서버에서 투표 인원을 더해라
-        pv.RPC("RPC_VoteUnpause", RpcTarget.All); // RPC_VoteUnpause 를 RPC에 포함된 모두에게 발생시켜라
+        PV.RPC("RPC_VoteUnpause", RpcTarget.All); // RPC_VoteUnpause 를 RPC에 포함된 모두에게 발생시켜라
     }
 
     public void VoteQuit() // 게임종료 찬성투표
@@ -86,7 +87,7 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         // 투표가 진행 중이거나 서버에 포함된 투표 인원이면 리턴해라
         StartVoting(VoteType.Quit); // 투표를 시작해라 (투표종류 게임종료)
         votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber); // 서버에서 투표 인원을 더해라
-        pv.RPC("RPC_VoteQuit", RpcTarget.All); // RPC_VoteQuit 를 RPC에 포함된 모두에게 발생시켜라
+        PV.RPC("RPC_VoteQuit", RpcTarget.All); // RPC_VoteQuit 를 RPC에 포함된 모두에게 발생시켜라
     }
 
     public void VoteContinue()
@@ -95,7 +96,7 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         // 투표가 진행 중이거나 서버에 포함된 투표 인원이면 리턴해라
         StartVoting(VoteType.Quit); // 투표를 시작해라 (투표종류 게임종료)
         votedPlayers.Add(PhotonNetwork.LocalPlayer.ActorNumber); // 서버에서 투표 인원을 더해라
-        pv.RPC("RPC_VoteContinue", RpcTarget.All); // RPC_VoteContinue 를 RPC에 포함된 모두에게 발생시켜라
+        PV.RPC("RPC_VoteContinue", RpcTarget.All); // RPC_VoteContinue 를 RPC에 포함된 모두에게 발생시켜라
     }
 
     [PunRPC]
@@ -144,8 +145,12 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (quitVote >= requiredVote) // 게임종료 찬성투표가 과반수보다 많거나 같으면
         {
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LoadLevel("StartScene"); // 스타트씬을 불러와라
+            PhotonNetwork.AutomaticallySyncScene = false;
+            StartCoroutine(ReturnStartScene());
+            //pv.RPC("QuitRPC",RpcTarget.All);
+            //PhotonNetwork.LeaveRoom();
+            //PhotonNetwork.Disconnect();
+            //PhotonNetwork.LoadLevel("StartScene"); // 스타트씬을 불러와라
         }
         else if (continueVote >= requiredVote) // 게임종료 반대투표가 과반수보다 많거나 같으면
         {
@@ -154,6 +159,13 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         }
         OnVotingPanel = false;
     }
+
+    //[PunRPC]
+    //private void QuitRPC()
+    //{
+    //    PhotonNetwork.LeaveRoom();
+    //    PhotonNetwork.LoadLevel("StartScene"); // 스타트씬을 불러와라
+    //}
 
     //--------------------------------------------------------투표가 과반수보다 높으면 일시정지를 한다.
     private IEnumerator PauseGame() // 코루틴 일시정지게임 로직
@@ -188,5 +200,32 @@ public class VotingSystem : MonoBehaviourPunCallbacks, IPunObservable
         quitVotingPanel.SetActive(false); // 게임종료 투표 패널 꺼라
     }
 
-    
+    IEnumerator ReturnStartScene()
+    {
+        //GameObject[] players = StageManager.instance.players;
+
+        //for(int i = players.Length - 1; i >= 0; i--)
+        //{
+        //    if (players[i] == null) continue;
+        //    PhotonNetwork.RemoveRPCs(players[i].GetComponent<PhotonView>());
+        //    PhotonNetwork.Destroy(players[i]);
+        //}
+
+        Camera.main.GetComponent<CameraManager>().players.Clear();
+
+
+        //PhotonNetwork.LeaveRoom();
+        //PhotonNetwork.LeaveLobby();
+        PhotonNetwork.Disconnect();
+
+        while (PhotonNetwork.NetworkClientState != ClientState.Disconnected)
+            yield return null;
+
+        PhotonNetwork.LoadLevel("StartScene");
+    }
+
+    public override void OnLeftRoom()
+    {
+        Debug.Log("방나옴");
+    }
 }

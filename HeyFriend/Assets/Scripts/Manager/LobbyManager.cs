@@ -18,6 +18,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public TextMeshProUGUI playerCountText;
     public GameObject startBtn;
 
+    GameObject[] players = new GameObject[4];
+
     private PhotonView photonView;
 
     private CameraManager cameraManager;
@@ -36,6 +38,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         cameraManager = Camera.main.GetComponent<CameraManager>();
         StartCoroutine(CheckChangeScene());
         isFull();
+        foreach(var a in PhotonNetwork.CurrentRoom.Players){
+            print(a);
+        }
+        // PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     //참가자라면 모두 사용
@@ -78,6 +84,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     bool isFull()
     {
+        Debug.Log("null? ");
+        Debug.Log(PhotonNetwork.CurrentRoom);
+        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+       
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         playerCountText.text = playerCount.ToString();
 
@@ -93,6 +103,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.CurrentRoom.IsVisible = false;
 
+        foreach(var p in players)
+        {
+            if (p == null) continue;
+            
+            PhotonNetwork.Destroy(p);
+        }
+
         PhotonNetwork.LoadLevel(2);
     }
 
@@ -104,6 +121,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
 
         GameObject obj = PhotonNetwork.Instantiate("Player"+playerNumber, Vector3.zero, Quaternion.identity);
+        players[playerNumber - 1] = obj;
+
         key = $"Player{playerNumber}(Clone)";
         if (cameraManager.players.ContainsKey(key)){
             cameraManager.players[key] = obj.transform.position.x;

@@ -18,33 +18,70 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject connectPanel;
 
     public GameObject audioManager;
+
+    public GameObject startGameBtn;
     //string isMaster;
     //GameObject obj;
 
+    int roomCount;
+
     public void Awake()
     {
+        Debug.Log("³×Æ®¿öÅ©¸Å´ÏÀú Awake");
         PhotonNetwork.SendRate = 30;
         PhotonNetwork.SerializationRate = 10;
         PhotonNetwork.AutomaticallySyncScene = true;
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        PhotonNetwork.PhotonServerSettings.DevRegion = "";
 
-        //��������
-        PhotonNetwork.ConnectUsingSettings();
+
+        //¼­¹öÁ¢¼Ó
+        if (PhotonNetwork.NetworkClientState == ClientState.PeerCreated){
+            PhotonNetwork.ConnectUsingSettings();
+        }else{
+        }
+            
 
         StartCoroutine(NetworkCheck());
 
     }
+    public override void OnConnected()
+    {
+        Debug.Log("‰Î");
+    }
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        base.OnRoomListUpdate(roomList);
+        roomCount = roomList.Count;
+
+    }
+
     public void OnGameStart()
     {
         RoomOptions options = new RoomOptions { MaxPlayers = 4 };
-
-        PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,"Test",options);
+        PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,$"Test{roomCount}",options);
+        Debug.Log("°ÔÀÓ½ÃÀÛ ¹öÆ° ´©¸§");
         Destroy(audioManager);
         //StartCoroutine(CheckChangeScene());
     }
 
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("방생성 : " + PhotonNetwork.CurrentRoom.Name);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("방입장 : "+ PhotonNetwork.CurrentRoom.Name);
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        Debug.Log("방입장 실패 : Random" );
+    }
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("방입장 실패 message : " +message);
+    }
     private void Update()
     {
         //counttext.text = PhotonNetwork.LocalPlayer.get;
@@ -54,7 +91,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     IEnumerator NetworkCheck()
     {
         connectPanel.SetActive(true);
-        
+        Debug.Log("ÆÐ³ÎÅ´");
         while (PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer)
             yield return null;
 
