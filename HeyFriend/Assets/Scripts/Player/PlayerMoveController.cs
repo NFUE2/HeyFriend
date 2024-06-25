@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using UnityEditor;
+
 
 public class PlayerMoveController : MonoBehaviourPunCallbacks
 {
@@ -21,7 +19,6 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     public float jumpPower;
     public Rigidbody2D bottomPlayer;
 
-    private bool isMove=false;
     [SerializeField] private float speed;
 
 

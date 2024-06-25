@@ -38,6 +38,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         cameraManager = Camera.main.GetComponent<CameraManager>();
         StartCoroutine(CheckChangeScene());
         isFull();
+        foreach(var a in PhotonNetwork.CurrentRoom.Players){
+            print(a);
+        }
         // PhotonNetwork.AutomaticallySyncScene = true;
     }
 
@@ -81,6 +84,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     bool isFull()
     {
+        Debug.Log("null? ");
+        Debug.Log(PhotonNetwork.CurrentRoom);
+        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+       
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         playerCountText.text = playerCount.ToString();
 
