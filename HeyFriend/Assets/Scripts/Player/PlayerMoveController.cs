@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using UnityEditor;
 
 public class PlayerMoveController : MonoBehaviourPunCallbacks
 {
@@ -19,6 +21,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
     public float jumpPower;
     public Rigidbody2D bottomPlayer;
 
+    
     [SerializeField] private float speed;
 
 
@@ -69,7 +72,7 @@ public class PlayerMoveController : MonoBehaviourPunCallbacks
         if(bottomPlayer==null){
             rigidBody2D.velocity = moveDirection;
         }else{
-            rigidBody2D.velocity = new Vector2(moveDirection.x + bottomPlayer.velocity.x,moveDirection.y);
+            rigidBody2D.velocity = moveDirection + bottomPlayer.velocity;;
         }
         
         if (moveDirection.x != 0) PV.RPC("FilpXRPC", RpcTarget.AllBuffered, moveDirection.x);
