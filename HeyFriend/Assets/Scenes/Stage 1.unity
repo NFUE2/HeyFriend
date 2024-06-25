@@ -8752,8 +8752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef57eaa0520566044ac436ccde0bd3a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 180
-  timerDuration: 180
+  seconds: 1
+  timerDuration: 1
   text: {fileID: 537377738938426678}
   GameOver: {fileID: 4255659053409299198}
   timeSound: {fileID: 7769123074899151077}
