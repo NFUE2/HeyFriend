@@ -18,6 +18,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject connectPanel;
 
     public GameObject audioManager;
+
+    public GameObject startGameBtn;
     //string isMaster;
     //GameObject obj;
 
@@ -25,24 +27,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void Awake()
     {
-        Debug.Log("³×Æ®¿öÅ©¸Å´ÏÀú Awake");
+        Debug.Log("Â³Ã—Ã†Â®Â¿Ã¶Ã…Â©Â¸Ã…Â´ÃÃ€Ãº Awake");
         PhotonNetwork.SendRate = 30;
         PhotonNetwork.SerializationRate = 10;
         PhotonNetwork.AutomaticallySyncScene = true;
 
         PhotonNetwork.PhotonServerSettings.DevRegion = "";
 
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
 
-        //¼­¹öÁ¢¼Ó
+        //Â¼Â­Â¹Ã¶ÃÂ¢Â¼Ã“
         if (PhotonNetwork.NetworkClientState == ClientState.PeerCreated){
             PhotonNetwork.ConnectUsingSettings();
         }else{
@@ -54,7 +47,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public override void OnConnected()
     {
-        Debug.Log("‰Î");
+        Debug.Log("â€°Ã");
     }
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -65,29 +58,29 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void OnGameStart()
     {
-        RoomOptions options = new RoomOptions { MaxPlayers = 2 };
+        RoomOptions options = new RoomOptions { MaxPlayers = 4 };
         PhotonNetwork.JoinRandomOrCreateRoom(null,0,MatchmakingMode.FillRoom,null,null,$"Test{roomCount}",options);
-        Debug.Log("°ÔÀÓ½ÃÀÛ ¹öÆ° ´©¸§");
+        Debug.Log("Â°Ã”Ã€Ã“Â½ÃƒÃ€Ã› Â¹Ã¶Ã†Â° Â´Â©Â¸Â§");
         Destroy(audioManager);
         //StartCoroutine(CheckChangeScene());
     }
 
     public override void OnCreatedRoom()
     {
-        Debug.Log("¹æ»ı¼º , ÀÌ¸§ : " + PhotonNetwork.CurrentRoom.Name);
+        Debug.Log("ë°©ìƒì„± : " + PhotonNetwork.CurrentRoom.Name);
     }
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("¹æ ÀÔÀå , ÀÌ¸§ : "+ PhotonNetwork.CurrentRoom.Name);
+        Debug.Log("ë°©ì…ì¥ : "+ PhotonNetwork.CurrentRoom.Name);
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("ÀÔÀå ½ÇÆĞ : Random" );
+        Debug.Log("ë°©ì…ì¥ ì‹¤íŒ¨ : Random" );
     }
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("ÀÔÀå ½ÇÆĞ message : " +message);
+        Debug.Log("ë°©ì…ì¥ ì‹¤íŒ¨ message : " +message);
     }
     private void Update()
     {
@@ -98,7 +91,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     IEnumerator NetworkCheck()
     {
         connectPanel.SetActive(true);
-        Debug.Log("ÆĞ³ÎÅ´");
+        Debug.Log("Ã†ÃÂ³ÃÃ…Â´");
         while (PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer)
             yield return null;
 
