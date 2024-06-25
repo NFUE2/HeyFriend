@@ -17,7 +17,7 @@ public class FallingCloud : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        bool isFoot = other.contacts[0].normal == Vector2.up;
+        bool isFoot = other.contacts[0].normal == Vector2.down;
         if (other.gameObject.CompareTag("Player")&& isFoot)
         {
             //pv.RPC("FallingCoroutine",RpcTarget.All);
